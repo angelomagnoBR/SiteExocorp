@@ -5,12 +5,14 @@ const VideoView = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const videos = [
-    { id: 1, title: 'Naufrágio_de_Navio_Detalhado.mp4', url: '/videos/Naufrágio_de_Navio_Detalhado.mp4', duration: '--:--' },
-    { id: 2, title: 'Cyberpunk_Wanted_Video_Script.mp4', url: '/videos/Cyberpunk_Wanted_Video_Script.mp4', duration: '--:--' },
-    { id: 3, title: 'Cyberpunk_Transformation_Video_Generation.mp4', url: '/videos/Cyberpunk_Transformation_Video_Generation.mp4', duration: '--:--' },
-    { id: 4, title: 'GRAVAÇÃO_SEGURANÇA_001.mp4', url: '', duration: '03:47' },
-    { id: 5, title: 'INTERCEPTAÇÃO_ÁUDIO_002.mp4', url: '', duration: '12:33' },
-    { id: 6, title: 'VIGILÂNCIA_REMOTA_003.mp4', url: '', duration: '08:21' },
+    { id: 1, title: 'Naufrágio_de_Navio_Detalhado.mp4', url: '/videos/Naufrágio_de_Navio_Detalhado.mp4', duration: '--:--', type: 'video' },
+    { id: 2, title: 'Cyberpunk_Wanted_Video_Script.mp4', url: '/videos/Cyberpunk_Wanted_Video_Script.mp4', duration: '--:--', type: 'video' },
+    { id: 3, title: 'Cyberpunk_Transformation_Video_Generation.mp4', url: '/videos/Cyberpunk_Transformation_Video_Generation.mp4', duration: '--:--', type: 'video' },
+    { id: 4, title: 'Denarao_cassino_nyx.mp3', url: '/audios/Denarao_cassino_nyx.mp3', duration: '--:--', type: 'audio' },
+    { id: 5, title: 'Denaro_Campos.mp3', url: '/audios/Denaro_Campos.mp3', duration: '--:--', type: 'audio' },
+    { id: 6, title: 'GRAVAÇÃO_SEGURANÇA_001.mp4', url: '', duration: '03:47', type: 'video' },
+    { id: 7, title: 'INTERCEPTAÇÃO_ÁUDIO_002.mp4', url: '', duration: '12:33', type: 'audio' },
+    { id: 8, title: 'VIGILÂNCIA_REMOTA_003.mp4', url: '', duration: '08:21', type: 'video' },
   ];
 
   const handleVideoSelect = (videoId: number) => {
@@ -33,21 +35,33 @@ const VideoView = () => {
         </p>
       </div>
 
-      {/* Main video player */}
+      {/* Main media player */}
       <div className="neon-border bg-card/30 backdrop-blur-sm p-6 mb-6">
         <div className="aspect-video bg-input/50 flex items-center justify-center mb-4 relative overflow-hidden">
           {currentVideo ? (
-            <video
-              ref={videoRef}
-              src={currentVideo.url}
-              controls
-              className="w-full h-full object-contain"
-            />
+            currentVideo.type === 'audio' ? (
+              <div className="w-full flex flex-col items-center justify-center space-y-4">
+                <div className="text-6xl text-primary mb-4 animate-pulse-neon">♪</div>
+                <audio
+                  ref={videoRef as any}
+                  src={currentVideo.url}
+                  controls
+                  className="w-full max-w-md"
+                />
+              </div>
+            ) : (
+              <video
+                ref={videoRef}
+                src={currentVideo.url}
+                controls
+                className="w-full h-full object-contain"
+              />
+            )
           ) : (
             <div className="text-center">
               <div className="text-4xl text-primary mb-2 animate-pulse-neon">▶</div>
               <p className="text-sm text-muted-foreground terminal-text">
-                [ PLAYER DE VÍDEO ]
+                [ PLAYER DE MÍDIA ]
               </p>
               <p className="text-xs text-muted-foreground terminal-text mt-2">
                 Selecione um arquivo para reproduzir
@@ -98,7 +112,7 @@ const VideoView = () => {
 
       <div className="mt-6 p-4 neon-border bg-primary/10">
         <p className="text-xs text-primary terminal-text tracking-wider">
-          ✓ VÍDEO CARREGADO: {videos.filter(v => v.url).length} DE {videos.length} ARQUIVOS DISPONÍVEIS
+          ✓ ARQUIVOS CARREGADOS: {videos.filter(v => v.url).length} DE {videos.length} DISPONÍVEIS
         </p>
       </div>
     </div>
