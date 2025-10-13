@@ -8,11 +8,13 @@ const VideoView = () => {
     { id: 1, title: 'Naufrágio_de_Navio_Detalhado.mp4', url: '/videos/Naufrágio_de_Navio_Detalhado.mp4', duration: '--:--', type: 'video' },
     { id: 2, title: 'Cyberpunk_Wanted_Video_Script.mp4', url: '/videos/Cyberpunk_Wanted_Video_Script.mp4', duration: '--:--', type: 'video' },
     { id: 3, title: 'Cyberpunk_Transformation_Video_Generation.mp4', url: '/videos/Cyberpunk_Transformation_Video_Generation.mp4', duration: '--:--', type: 'video' },
-    { id: 4, title: 'Denarao_cassino_nyx.mp3', url: '/audios/Denarao_cassino_nyx.mp3', duration: '--:--', type: 'audio' },
-    { id: 5, title: 'Denaro_Campos.mp3', url: '/audios/Denaro_Campos.mp3', duration: '--:--', type: 'audio' },
-    { id: 6, title: 'GRAVAÇÃO_SEGURANÇA_001.mp4', url: '', duration: '03:47', type: 'video' },
-    { id: 7, title: 'INTERCEPTAÇÃO_ÁUDIO_002.mp4', url: '', duration: '12:33', type: 'audio' },
-    { id: 8, title: 'VIGILÂNCIA_REMOTA_003.mp4', url: '', duration: '08:21', type: 'video' },
+    { id: 4, title: 'Cyberpunk_Laboratório_Corpos_Gigantes_em_Tubos.mp4', url: '/videos/Cyberpunk_Laboratório_Corpos_Gigantes_em_Tubos.mp4', duration: '--:--', type: 'video' },
+    { id: 5, title: 'Criação_de_Vídeo_Instalação_Científica_Cyberpunk.mp4', url: '/videos/Criação_de_Vídeo_Instalação_Científica_Cyberpunk.mp4', duration: '--:--', type: 'video' },
+    { id: 6, title: 'Denarao_cassino_nyx.mp3', url: '/audios/Denarao_cassino_nyx.mp3', duration: '--:--', type: 'audio' },
+    { id: 7, title: 'Denaro_Campos.mp3', url: '/audios/Denaro_Campos.mp3', duration: '--:--', type: 'audio' },
+    { id: 8, title: 'GRAVAÇÃO_SEGURANÇA_001.mp4', url: '', duration: '03:47', type: 'video' },
+    { id: 9, title: 'INTERCEPTAÇÃO_ÁUDIO_002.mp4', url: '', duration: '12:33', type: 'audio' },
+    { id: 10, title: 'VIGILÂNCIA_REMOTA_003.mp4', url: '', duration: '08:21', type: 'video' },
   ];
 
   const handleVideoSelect = (videoId: number) => {
