@@ -544,135 +544,85 @@ LIÇÕES APRENDIDAS:
   `;
 
   const amandaBackerContent = `
-═══════════════════════════════════════════════════════════════════
-
 DOSSIÊ EXECUTIVO
 ARQUIVO: AB-EXEC-789
-NOME: Amanda Backer
-POSIÇÃO: CEO - ExoCorp
-
-═══════════════════════════════════════════════════════════════════
+NOME: Amaya Backer
+POSIÇÃO: Engenheira Chefe - Omnivis
 
 DADOS BIOGRÁFICOS
 
-Nome: Amanda Backer
-Idade: 48 anos
-Educação: MBA Harvard, PhD Neurociência MIT
-Cargo: CEO da ExoCorp (2218 - Presente)
+Nome: Amaya Backer
+Idade: 69 anos
+Educação: PhD em Física Quântica e Ciência da Computação (instituições não documentadas)
+Cargo: Engenheira Chefe da Omnivis (2205 - Presente)
 Status: Ativa - Nível de Acesso Máximo
-
-═══════════════════════════════════════════════════════════════════
 
 HISTÓRICO PROFISSIONAL
 
-[2195-2210] ASCENSÃO CORPORATIVA
-  → Início como Pesquisadora Junior
-  → Desenvolvimento de implantes neurais de 3ª geração
-  → 47 patentes registradas em seu nome
-  → Promoção para Diretora de P&D (2205)
+[2185-2200] PIONEIRISMO EM QUÂNTICA
+→ Pesquisa e desenvolvimento em computação quântica.
+→ Publicações inovadoras sobre processamento de dados multidimensionais.
+→ Liderança em projetos secretos de alta complexidade.
 
-[2210-2218] CONSOLIDAÇÃO DE PODER
-  → VP de Operações Tecnológicas
-  → Liderou fusão com BioSynt Corporation
-  → Eliminação estratégica de rivais internos
-  >>> 3 "acidentes" documentados <<<
+36 patentes de algoritmos quânticos registrados <<<
 
-[2218] NOMEAÇÃO COMO CEO
-  → Aprovação unânime do conselho
-  → Implementação de "Projeto H"
-  → Parceria estratégica com O Arquiteto
+[2200-2205] DESENVOLVIMENTO DO CHRONOSYNAPSE
+→ Liderou a equipe que desenvolveu o ChronoSynapse, um sistema capaz de prever possibilidades futuras.
+→ Testes iniciais mostraram resultados promissores, mas também instabilidade.
+→ Exposição prolongada a dados quânticos levou ao colapso mental da engenheira.
 
-═══════════════════════════════════════════════════════════════════
+[2205] FUNDAÇÃO DA OMNIVIS
+→ Liderou a fundação da Omnivis para continuar o desenvolvimento do ChronoSynapse.
+→ Acredita que o sistema pode ser estabilizado e usado para ajudar a humanidade.
 
 PERFIL PSICOLÓGICO
 
 ANÁLISE COMPORTAMENTAL:
 
 TRAÇOS DOMINANTES:
-  → Ambição ilimitada
-  → Falta de empatia (psicopatia funcional)
-  → Inteligência excepcional (QI 156)
-  → Visão de longo prazo
+→ Gênio excêntrico
+→ Obsessão com o futuro
+→ Fragilidade mental (instabilidade)
+→ Busca por redenção
 
 METODOLOGIA:
-  ✓ Pragmatismo extremo
-  ✓ Fins justificam os meios
-  ✓ Manipulação de narrativas públicas
-  ✓ Eliminação de obstáculos (qualquer custo)
+✓ Abordagem puramente científica
+✓ Isolamento social
+✓ Dependência do ChronoSynapse
 
 CITAÇÃO DOCUMENTADA:
-  "A humanidade precisa de orientação, não de democracia.
-   Somos a evolução em forma corporativa."
+"O futuro não é uma linha, é uma infinidade de possibilidades. Vi todas elas, e a beleza é tão avassaladora quanto o horror."
 
-═══════════════════════════════════════════════════════════════════
-
-PROJETO H - ENVOLVIMENTO
+PROJETO CHRONOSYNAPSE - ENVOLVIMENTO
 
 PAPEL:
-  → Patrocinadora principal
-  → Fornecimento de recursos ilimitados
-  → Proteção política e legal
-  >>> CONHECIMENTO COMPLETO DE TODAS AS OPERAÇÕES <<<
+→ Criadora e engenheira principal
+→ Operação e manutenção do sistema
+→ Acesso e interpretação dos dados quânticos
+
+ACESSO TOTAL AOS DADOS DE POSSIBILIDADES FUTURAS <<<
 
 MOTIVAÇÃO:
-  "Criar uma humanidade perfeita, otimizada, controlável.
-   A raça humana 2.0 não cometerá os erros do passado.
-   Seremos os arquitetos de nosso próprio destino."
-
-INVESTIMENTO:
-  → 847 bilhões de créditos
-  → 15 anos de desenvolvimento
-  → Recursos ilimitados alocados
-
-═══════════════════════════════════════════════════════════════════
-
-OPERAÇÕES ENCOBERTAS
-
-ATIVIDADES DOCUMENTADAS:
-
-[ELIMINAÇÃO DE OPOSITORES]
-  → 12 jornalistas investigativos "desaparecidos"
-  → 5 políticos hostis "substituídos"
-  → 200+ ativistas em prisões negras
-
-[MANIPULAÇÃO SOCIAL]
-  → Controle de 67% da mídia global
-  → Propaganda pró-corporativa 24/7
-  → Supressão de informações conflitantes
-
-[EXPERIMENTOS NÃO AUTORIZADOS]
-  → Testes em populações vulneráveis
-  → Modificações genéticas ilegais
-  >>> VIOLAÇÃO DE 47 TRATADOS INTERNACIONAIS <<<
-
-═══════════════════════════════════════════════════════════════════
+"O cérebro humano não foi feito para comportar a totalidade. Mas, se o sistema puder fazer a triagem, poderemos salvar a humanidade de si mesma. Eu não sou uma vilã, sou apenas a primeira a ver."
 
 AVALIAÇÃO DE RISCO
 
-PERIGO PARA A HUMANIDADE: ████████░░ (9/10)
+PERIGO PARA A HUMANIDADE: █████░░░░░ (5/10)
 
-Amanda Backer representa a elite corporativa em sua forma
-mais perigosa: inteligente, rica, sem moral, e com acesso
-a tecnologia capaz de remodelar a própria humanidade.
+Amaya Backer não é uma vilã, mas uma vítima de sua própria genialidade. A exposição prolongada aos dados do ChronoSynapse causou um colapso mental, tornando-a imprevisível e perigosa. O perigo não é ela, mas o que ela pode liberar.
 
-Sua visão de "humanidade perfeita" é fundamentalmente 
-totalitária e representa extinção da liberdade individual.
-
->>> NÃO PODE SER DETIDA POR MEIOS CONVENCIONAIS <<<
->>> PROTEÇÃO POLÍTICA E MILITAR ABSOLUTA <<<
-
-═══════════════════════════════════════════════════════════════════
+Sua visão de futuro pode ser perigosa:
+→ Ações baseadas em um futuro incerto.
+→ Possibilidade de manipulação por outros.
+→ Incapacidade de distinguir realidade e possibilidades.
 
 NOTAS FINAIS
 
-STATUS: Intocável (atualmente)
-RECOMENDAÇÃO: Vigilância contínua
-PRIORIDADE: Documentar todas as atividades
+STATUS: Desestabilizada (atualmente)
+RECOMENDAÇÃO: Monitorar seu estado mental e as operações do ChronoSynapse.
+PRIORIDADE: Avaliar o perigo de um colapso total.
 
-"Ela não é apenas uma CEO. Ela é uma ameaça existencial
- disfarçada de líder empresarial."
-
-═══════════════════════════════════════════════════════════════════
+"Ela não quer o controle, quer a salvação. O problema é que sua sanidade pode ser o preço para alcançar isso."
 
 // FIM DO DOSSIÊ
 // ESTE ARQUIVO NÃO DEVE SER DESCOBERTO
@@ -878,11 +828,11 @@ AVISO:
     },
     'amanda backer': {
       title: 'Dossiê Executivo',
-      subtitle: 'AMANDA BACKER - CEO EXOCORP',
+      subtitle: 'AMAYA BACKER - ENGENHEIRA CHEFE OMNIVIS',
       content: amandaBackerContent,
       icon: Shield,
-      badges: ['NÍVEL EXECUTIVO', 'PROJETO H', 'INTOCÁVEL', 'AMEAÇA MÁXIMA'],
-      badgeColor: 'primary',
+      badges: ['CHRONOSYNAPSE', 'FÍSICA QUÂNTICA', 'INSTÁVEL', 'PERIGO MÉDIO'],
+      badgeColor: 'secondary',
     },
     bobby: {
       title: 'Alvo de Alta Prioridade',
