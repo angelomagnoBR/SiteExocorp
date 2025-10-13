@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 220 20% 5%;
+    --foreground: 180 100% 90%;
+
+    --card: 220 20% 8%;
+    --card-foreground: 180 100% 90%;
+
+    --popover: 220 20% 8%;
+    --popover-foreground: 180 100% 90%;
+
+    --primary: 180 100% 50%;
+    --primary-foreground: 220 20% 5%;
+
+    --secondary: 300 100% 50%;
+    --secondary-foreground: 220 20% 5%;
+
+    --muted: 220 15% 15%;
+    --muted-foreground: 180 50% 60%;
+
+    --accent: 300 100% 50%;
+    --accent-foreground: 220 20% 5%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 220 20% 5%;
+
+    --border: 180 50% 25%;
+    --input: 220 20% 12%;
+    --ring: 180 100% 50%;
+
+    --radius: 0.125rem;
+
+    --neon-cyan: 180 100% 50%;
+    --neon-magenta: 300 100% 50%;
+    --cyber-dark: 220 20% 5%;
+    --cyber-darker: 220 25% 3%;
+    --terminal-green: 120 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Courier New', monospace;
+    overflow-x: hidden;
+  }
+
+  /* Scanlines effect */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.3;
+  }
+}
+
+@layer utilities {
+  .neon-glow {
+    text-shadow: 0 0 10px hsl(var(--neon-cyan)),
+                 0 0 20px hsl(var(--neon-cyan)),
+                 0 0 30px hsl(var(--neon-cyan));
+  }
+
+  .neon-glow-magenta {
+    text-shadow: 0 0 10px hsl(var(--neon-magenta)),
+                 0 0 20px hsl(var(--neon-magenta)),
+                 0 0 30px hsl(var(--neon-magenta));
+  }
+
+  .neon-border {
+    border: 1px solid hsl(var(--neon-cyan));
+    box-shadow: 0 0 10px hsl(var(--neon-cyan) / 0.5),
+                inset 0 0 10px hsl(var(--neon-cyan) / 0.2);
+  }
+
+  .neon-border-magenta {
+    border: 1px solid hsl(var(--neon-magenta));
+    box-shadow: 0 0 10px hsl(var(--neon-magenta) / 0.5),
+                inset 0 0 10px hsl(var(--neon-magenta) / 0.2);
+  }
+
+  .glitch {
+    position: relative;
+    animation: glitch 3s infinite;
+  }
+
+  @keyframes glitch {
+    0%, 90%, 100% {
+      transform: translate(0);
+    }
+    92% {
+      transform: translate(-2px, 2px);
+    }
+    94% {
+      transform: translate(2px, -2px);
+    }
+    96% {
+      transform: translate(-2px, -2px);
+    }
+    98% {
+      transform: translate(2px, 2px);
+    }
+  }
+
+  .digital-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.1;
+    z-index: 0;
+  }
+
+  .cyber-grid {
+    background-image: 
+      linear-gradient(hsl(var(--neon-cyan) / 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--neon-cyan) / 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .terminal-text {
+    font-family: 'Courier New', 'Consolas', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .chromatic-aberration {
+    position: relative;
+  }
+
+  .chromatic-aberration::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 2px;
+    color: hsl(var(--neon-cyan));
+    opacity: 0.8;
+    z-index: -1;
+  }
+
+  .chromatic-aberration::after {
+    content: attr(data-text);
+    position: absolute;
+    left: -2px;
+    color: hsl(var(--neon-magenta));
+    opacity: 0.8;
+    z-index: -1;
+  }
+}
