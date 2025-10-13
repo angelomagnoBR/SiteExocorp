@@ -4,6 +4,10 @@ const GalleryView = () => {
     { id: 2, title: 'LANTERNA_VERMELHA.jpeg', url: '/images/Lanterna_Vermelha.jpeg' },
     { id: 3, title: 'FESTA_PURPLE_FANG.png', url: '/images/Festa_purple_fang.png' },
     { id: 4, title: 'PLANTA_HOLOGRÁFICA.webp', url: '/images/Planta_holografaica.webp' },
+    { id: 5, title: 'CYBERPUNK_CHARACTERS.webp', url: '/images/Cyberpunk_Characters_Lineup.webp' },
+    { id: 6, title: 'RITUAL_AGHORIS.webp', url: '/images/Cyberpunk_Aghoris_Ritual.webp' },
+    { id: 7, title: 'CAMINHANTES_VAZIO.webp', url: '/images/Caminhantes_do_Vazio.webp' },
+    { id: 8, title: 'FADE_TO_BLACK.webp', url: '/images/Fade_to_Black.webp' },
   ];
 
   return (
