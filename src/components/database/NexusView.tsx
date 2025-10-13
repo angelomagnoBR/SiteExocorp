@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Lock, AlertTriangle, Target, Shield, Skull, User, Users } from 'lucide-react';
 
 type ReportType = 'nexus' | 'lia' | 'neia campos' | 'apex' | 'amanda backer' | 'bobby';
 
 const NexusView = () => {
   const [activeReport, setActiveReport] = useState<ReportType>('nexus');
+  const location = useLocation();
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(location.search);
     const report = urlParams.get('report') as ReportType;
     if (report) {
       setActiveReport(report);
     }
-  }, []);
+  }, [location.search]);
 
   const nexusContent = `
 ══════════════════════════════════════════════════════════
