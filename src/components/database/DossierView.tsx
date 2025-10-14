@@ -108,9 +108,9 @@ STATUS: ELIMINAÇÃO PRIORITÁRIA AUTORIZADA
     codename: 'O CIENTISTA',
     realName: 'Artz',
     status: 'ATIVO',
-    priority: 'ALTO',
+    priority: 'CRÍTICO',
     lastUpdate: '12.10.2225',
-    threatLevel: 'ALTO',
+    threatLevel: 'CRÍTICO',
     dossier: `
 DOSSIÊ DE ANÁLISE DE AMEAÇA – EXOCORP SEC.
 
@@ -442,7 +442,7 @@ sugere infiltração ativa em operações ExoCorp.
   {
     id: '006-TOUPEIRA-NY',
     codename: 'A TOUPEIRA',
-    realName: 'Neia Campos',
+    realName: '[IDENTIDADE CLASSIFICADA]',
     status: 'ATIVO',
     priority: 'ALTO',
     lastUpdate: '12.10.2225',
@@ -453,14 +453,14 @@ DOSSIÊ DE ANÁLISE DE AMEAÇA – EXOCORP SEC.
 CLASSIFICAÇÃO: ULTRASECRETO // ACESSO ALPHA
 ID DO ARQUIVO: 006-TOUPEIRA-NY
 DATA: 12.10.2225
-ASSUNTO: Neia Campos, a.k.a. "A Toupeira"
+ASSUNTO: "A Toupeira" (Agente Duplo)
 NÍVEL DE AMEAÇA: MÉDIO (Agente Duplo)
 
 ═══════════════════════════════════════════════════════════
 
 1.0 RESUMO EXECUTIVO
 
-Neia Campos é uma agente de dupla-face trabalhando primariamente
+A Toupeira é uma agente de dupla-face trabalhando primariamente
 para a Zion Industries. Possui conhecimento profundo da lei
 corporativa e táticas da Zion. Atualmente sob monitoramento
 constante enquanto é utilizada para contrainteligência.
@@ -1201,13 +1201,13 @@ significativa e recurso valioso a ser recuperado.
 2.1 CAPACIDADES
 
 ▸ Teletransporte de Curta Distância
-  Alcance máximo: 500 metros
+  Alcance máximo: [DADOS CLASSIFICADOS]
   Tempo de recarga: 45 segundos
   Precisão: ±2 metros do ponto-alvo
 
 ▸ Transporte de Massa
-  Capacidade: até 200kg
-  Pode transportar múltiplas pessoas ou carga
+  Capacidade: até 50kg
+  Limitado a uma pessoa ou carga equivalente
 
 ▸ Assinatura Mínima
   Emisão detectável por 0,3 segundos durante transporte
@@ -1399,9 +1399,9 @@ Probabilidade de envolvimento ativo: 67%
     codename: 'O COLETOR',
     realName: 'Nilo Saito',
     status: 'ATIVO',
-    priority: 'MÉDIO',
+    priority: 'CRÍTICO',
     lastUpdate: '12.10.2225',
-    threatLevel: 'MÉDIO',
+    threatLevel: 'CRÍTICO',
     dossier: `
 DOSSIÊ DE ANÁLISE DE AMEAÇA – EXOCORP SEC.
 
@@ -1503,9 +1503,9 @@ ataque. Lealdade a Bobby Huey é vulnerabilidade explorável.
     codename: 'A VOZ DA REVOLUÇÃO',
     realName: 'Zhen Liu',
     status: 'ATIVO',
-    priority: 'ALTO',
+    priority: 'CRÍTICO',
     lastUpdate: '12.10.2225',
-    threatLevel: 'ALTO',
+    threatLevel: 'CRÍTICO',
     dossier: `
 DOSSIÊ DE ANÁLISE DE AMEAÇA – EXOCORP SEC.
 
