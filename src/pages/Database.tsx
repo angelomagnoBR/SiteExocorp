@@ -33,6 +33,12 @@ const Database = () => {
       'amanda': 'amanda backer', // Short alias
       'bobby': 'bobby',
       'bobby huey': 'bobby', // Full name alias
+      'javier montoya': 'javier montoya',
+      'javier': 'javier montoya', // Short alias
+      'el aguila': 'javier montoya', // Codename alias
+      'aguila': 'javier montoya', // Codename short
+      'rocco': 'rocco',
+      'inferno': 'rocco', // Codename alias
     };
     
     if (commandMap[cmd]) {

@@ -18,31 +18,31 @@ const targets: Target[] = [
     id: '001-MENTOR-NY',
     codename: 'O MENTOR',
     realName: 'Bobby Huey',
-    status: 'ATIVO',
+    status: 'NEUTRALIZADO',
     priority: 'CRÍTICO',
-    lastUpdate: '12.10.2225',
-    threatLevel: 'EXTREMO',
+    lastUpdate: '15.10.2225',
+    threatLevel: 'NEUTRALIZADO',
     dossier: `
 DOSSIÊ DE ANÁLISE DE AMEAÇA – EXOCORP SEC.
 
 CLASSIFICAÇÃO: ULTRASECRETO // ACESSO ALPHA
 ID DO ARQUIVO: 001-MENTOR-NY
-DATA: 12.10.2225
+DATA: 15.10.2225
 ASSUNTO: Bobby Huey, a.k.a. "O Mentor"
-NÍVEL DE AMEAÇA: EXTREMO
-STATUS: ELIMINAÇÃO PRIORITÁRIA
+NÍVEL DE AMEAÇA: NEUTRALIZADO
+STATUS: ELIMINADO
 
 ═══════════════════════════════════════════════════════════
 
 1.0 RESUMO EXECUTIVO
 
-Bobby Huey representa a ameaça mais crítica à hegemonia corporativa
-na região de Nova York. Sua capacidade de unificar facções díspares
-e inspirar lealdade fanática o torna o epicentro da resistência
-"orgânica". É um símbolo vivo da revolução, cuja eliminação é
-prioritária para desmoralizar o movimento insurgente.
+Bobby Huey, líder supremo do movimento insurgente Nexus, foi
+neutralizado com êxito em operação coordenada. Sua eliminação
+representa um golpe crítico à moral e coesão da resistência
+"orgânica" em Nova York.
 
->>> ORDEM DE NEUTRALIZAÇÃO ATIVA <<<
+>>> OPERAÇÃO CONCLUÍDA COM SUCESSO <<<
+>>> ALVO NEUTRALIZADO: 14.10.2225 <<<
 
 ═══════════════════════════════════════════════════════════
 
@@ -82,21 +82,26 @@ prioritária para desmoralizar o movimento insurgente.
 
 ═══════════════════════════════════════════════════════════
 
-3.0 DIRETIVA DE AÇÃO
+3.0 OPERAÇÃO DE NEUTRALIZAÇÃO
 
-STATUS: ELIMINAÇÃO PRIORITÁRIA AUTORIZADA
+STATUS: CONCLUÍDA
 
-▸ Fase 1: Vigilância Total
-  Rastreamento 24/7. Identificação de padrões e rotinas.
+▸ Data de Eliminação: 14.10.2225
+▸ Local: [CLASSIFICADO]
+▸ Método: Ação tática coordenada
 
-▸ Fase 2: Neutralização Simbólica
-  Eliminação pública para impacto psicológico máximo na
-  resistência. Recomenda-se transmissão ao vivo.
+▸ Resultado:
+  - Alvo neutralizado permanentemente
+  - Corpo recuperado e sob custódia ExoCorp
+  - Impacto imediato observado na moral insurgente
 
-▸ Fase 3: Desmoralização
-  Uso do corpo como símbolo da futilidade da resistência.
+▸ Monitoramento Pós-Operação:
+  - Vigilância intensificada sobre membros remanescentes do Nexus
+  - Análise de sucessão de liderança em andamento
+  - Preparação para exploração psicológica da perda
 
->>> AGUARDANDO AUTORIZAÇÃO FINAL DO CEO <<<
+>>> MISSÃO CUMPRIDA <<<
+>>> RESISTÊNCIA SEVERAMENTE DESESTABILIZADA <<<
 
 ═══════════════════════════════════════════════════════════
 
@@ -1300,11 +1305,12 @@ NÍVEL DE AMEAÇA: ALTO
 1.0 RESUMO EXECUTIVO
 
 John Bohn é um ex-operador militar de elite que desapareceu
-do radar ExoCorp por período prolongado. Sua experiência em
+do radar ExoCorp há alguns meses. Sua experiência em
 infiltração e contra-vigilância o torna extremamente perigoso
 e imprevisível. Alto prêmio oferecido por sua captura viva.
 
->>> ÚLTIMA LOCALIZAÇÃO: DESCONHECIDA (18 MESES) <<<
+>>> ÚLTIMA LOCALIZAÇÃO: DESCONHECIDA (4 MESES) <<<
+>>> STATUS: DESAPARECIDO - PARADEIRO INCERTO <<<
 >>> PRÊMIO: 25 MILHÕES DE CRÉDITOS <<<
 
 ═══════════════════════════════════════════════════════════
@@ -1326,7 +1332,7 @@ e imprevisível. Alto prêmio oferecido por sua captura viva.
   explosivos, táticas urbanas.
 
 ▸ Imprevisibilidade
-  Sem padrão comportamental estabelecido nos últimos 18
+  Sem padrão comportamental estabelecido nos últimos 4
   meses. Impossível antecipar movimentos.
 
 ▸ Rede Subterrânea
@@ -1602,6 +1608,410 @@ psicológico máximo.
 
 >>> NEUTRALIZAÇÃO PÚBLICA É ARMA PSICOLÓGICA <<<
 >>> TIMING É CRÍTICO <<<
+
+═══════════════════════════════════════════════════════════
+
+// FIM DO DOSSIÊ
+    `
+  },
+  {
+    id: '018-AGUILA-NY',
+    codename: 'EL ÁGUILA',
+    realName: 'Javier Montoya',
+    status: 'ATIVO',
+    priority: 'CRÍTICO',
+    lastUpdate: '13.10.2225',
+    threatLevel: 'CRÍTICO',
+    dossier: `
+DOSSIÊ DE ANÁLISE DE AMEAÇA – EXOCORP SEC.
+
+CLASSIFICAÇÃO: ULTRASECRETO // ACESSO ALPHA
+ID DO ARQUIVO: 018-AGUILA-NY
+DATA: 13.10.2225
+ASSUNTO: Javier "El Águila" Montoya, Líder da Sinaloa
+NÍVEL DE AMEAÇA: CRÍTICO
+STATUS: PROCURADO
+
+═══════════════════════════════════════════════════════════
+
+1.0 RESUMO EXECUTIVO
+
+Javier "El Águila" Montoya é o líder supremo do cartel modernizado
+da Sinaloa em NeonCity. Descendente direto de uma família histórica
+de traficantes, ele adaptou o antigo império criminoso ao mundo
+cyberpunk, estabelecendo um dos cartéis mais poderosos e tecnológicos
+da cidade. Sua combinação de brutalidade tradicional com táticas
+modernas o torna uma ameaça crítica aos interesses corporativos.
+
+>>> PROCURADO: RECOMPENSA DE 50 MILHÕES DE CRÉDITOS <<<
+>>> CAPTURA VIVA PREFERENCIAL <<<
+
+═══════════════════════════════════════════════════════════
+
+2.0 PERFIL PESSOAL
+
+▸ Idade: 45 anos
+▸ Origem: Filho de família tradicional do antigo cartel de Sinaloa
+▸ Aparência: 
+  - Estatura média, presença intimidadora
+  - Pele bronzeada com cicatrizes de batalha
+  - Tatuagens elaboradas representando poder e linhagem
+  - Implante ocular cibernético discreto para monitoramento
+  - Veste roupas de alta qualidade mesclando estilo mexicano
+    clássico com elementos futuristas
+  - Sombreiro estilizado feito de fibra de carbono (icônico)
+
+═══════════════════════════════════════════════════════════
+
+3.0 ANÁLISE DE CAPACIDADES
+
+3.1 PONTOS FORTES
+
+▸ Liderança Carismática
+  Inspira lealdade absoluta em seus seguidores. Cultivou
+  imagem de protetor e figura paterna para membros da gangue.
+
+▸ Estrategista Nato
+  Calculista e metódico. Raramente age sem plano bem pensado.
+  Estuda inimigos com precisão cirúrgica.
+
+▸ Império Modernizado
+  Transformou a Sinaloa em força tecnológica:
+  - Controle de rotas de tráfico de armas e drogas
+  - Rede de tecnologias ilegais
+  - Sistema de inteligência avançado
+  - Operações em múltiplos setores de NeonCity
+
+▸ Preservação Cultural
+  Mantém rituais antigos da gangue, reforçando senso de
+  identidade e lealdade dos membros.
+
+▸ Visão Global
+  Planeja transformar Sinaloa em força global novamente.
+  Aproveita caos entre corporações para expandir influência.
+
+3.2 PONTOS FRACOS
+
+▸ Obstinação
+  Obsessão por poder e vingança pode cegá-lo para alianças
+  estratégicas, tornando-o vulnerável a manipulações.
+
+▸ Orgulho Fatal
+  Despreza aqueles que não considera dignos. Pode subestimar
+  rivais ou até aliados potenciais.
+
+▸ Laços Familiares
+  Profundamente ligado à ideia de família. Vulnerável a
+  manipulação emocional através desses laços.
+
+▸ Rixa Pessoal
+  Vendetta com Viktor "O Tubarão" da Bratva por morte de
+  irmão. Pode ser usado para provocar erro tático.
+
+═══════════════════════════════════════════════════════════
+
+4.0 MOTIVAÇÕES PRIMÁRIAS
+
+▸ Consolidação de Poder Absoluto
+  Deseja dominar completamente submundo, unificar ou destruir
+  todas gangues rivais.
+
+▸ Preservação de Herança
+  Vê Sinaloa como última chama da glória dos cartéis.
+  Comprometido em manter nome temido por gerações.
+
+▸ Exploração do Caos
+  Aproveita guerra entre corporações e gangues para expandir.
+  Visa tornar Sinaloa força global novamente.
+
+▸ Independência Total
+  Busca acumular riqueza suficiente para garantir liberdade
+  absoluta das corporações.
+
+▸ Vingança contra Bratva
+  Eliminação de Viktor é prioridade pessoal após perda familiar.
+
+═══════════════════════════════════════════════════════════
+
+5.0 RELAÇÕES COM OUTRAS FACÇÕES
+
+▸ Trindade da Chama: Desprezados por sua brutalidade
+▸ Bratva: Inimizade mortal (vendetta pessoal)
+▸ Dragões de Jade: Rivalidade territorial
+▸ Família Carbone: Competição por rotas de contrabando
+
+═══════════════════════════════════════════════════════════
+
+6.0 DIRETIVA DE AÇÃO
+
+▸ Fase 1: Infiltração
+  Inserir agentes nas operações da Sinaloa para mapear
+  estrutura de comando e localizar El Águila.
+
+▸ Fase 2: Exploração de Fraquezas
+  - Usar rixa com Bratva para criar situações de exposição
+  - Identificar e monitorar familiares próximos
+  - Mapear locais de rituais tradicionais da gangue
+
+▸ Fase 3: Captura ou Neutralização
+  Prioridade: CAPTURA VIVA para interrogatório sobre:
+  - Estrutura completa da Sinaloa
+  - Rotas de tráfico e armas
+  - Conexões com outras organizações criminosas
+  
+  Alternativa: Eliminação se captura não for viável
+
+▸ Recompensa: 50 MILHÕES DE CRÉDITOS
+  Vivo: 50 milhões
+  Morto: 25 milhões
+  Informações que levem à captura: 10 milhões
+
+>>> AMEAÇA DE NÍVEL MÁXIMO <<<
+>>> CAPTURA É PRIORIDADE ESTRATÉGICA <<<
+
+═══════════════════════════════════════════════════════════
+
+// FIM DO DOSSIÊ
+    `
+  },
+  {
+    id: '019-INFERNO-NY',
+    codename: 'INFERNO',
+    realName: 'Rocco',
+    status: 'ATIVO',
+    priority: 'CRÍTICO',
+    lastUpdate: '14.10.2225',
+    threatLevel: 'CRÍTICO',
+    dossier: `
+DOSSIÊ DE ANÁLISE DE AMEAÇA – EXOCORP SEC.
+
+CLASSIFICAÇÃO: ULTRASECRETO // ACESSO ALPHA
+ID DO ARQUIVO: 019-INFERNO-NY
+DATA: 14.10.2225
+ASSUNTO: Rocco "Inferno", Líder da Trindade da Chama
+NÍVEL DE AMEAÇA: CRÍTICO
+STATUS: ATIVO - EXTREMAMENTE PERIGOSO
+
+═══════════════════════════════════════════════════════════
+
+1.0 RESUMO EXECUTIVO
+
+Rocco, conhecido como "Inferno", é o líder carismático e fanático
+da Trindade da Chama, uma organização terrorista que combina
+misticismo, fervor revolucionário e tecnologia experimental.
+Descendente de trabalhadores italianos, fundou o movimento como
+resistência contra as corporações, acreditando que apenas através
+da destruição completa do sistema é possível alcançar liberdade.
+
+Sua combinação de devoção quase religiosa com brutalidade tática
+o torna uma das maiores ameaças à estabilidade corporativa.
+
+>>> ALERTA CRÍTICO: EXTREMAMENTE PERIGOSO <<<
+>>> NEUTRALIZAÇÃO PRIORITÁRIA AUTORIZADA <<<
+
+═══════════════════════════════════════════════════════════
+
+2.0 PERFIL PESSOAL
+
+▸ História: Descendente de trabalhadores italianos migrantes
+  em NeonCity. Fundou Trindade da Chama como movimento de
+  resistência revolucionária.
+
+▸ Aparência:
+  - Homem robusto de presença dominante
+  - Tatuagens de símbolos religiosos e revolucionários
+  - Túnica vermelha e preta (uniforme característico)
+  - Evoca imagem de sacerdote rebelde
+  - Implantes luminescentes simulando brasas sob a pele
+
+▸ Personalidade:
+  - Carismático e apaixonado
+  - Visionário com discursos poderosos
+  - Visão de mundo binária: "conosco ou contra nós"
+  - Fervor quase religioso pela causa
+
+═══════════════════════════════════════════════════════════
+
+3.0 ORGANIZAÇÃO: TRINDADE DA CHAMA
+
+3.1 ESTRUTURA
+
+▸ Liderança Tripla: "Chamas Primordiais"
+  - FORÇA (Rocco)
+  - VISÃO (Identidade desconhecida)
+  - DESTRUIÇÃO (Identidade desconhecida)
+
+▸ Culto ao Poder
+  Veneram a "Chama Eterna" representando purificação e
+  renovação através da destruição.
+
+3.2 CAPACIDADES OPERACIONAIS
+
+▸ Operações Principais:
+  - Ataques diretos a instalações corporativas
+  - Sabotagem sistemática de infraestrutura
+  - Propaganda revolucionária massiva
+  - Recrutamento ativo em setores pobres
+  - Proteção e serviços em troca de lealdade
+
+▸ Tecnologia:
+  - Drogas sintéticas de amplificação de força/agressividade
+  - Cibernética experimental e bioenhanced
+  - Armas experimentais
+  - Implantes luminescentes de identificação
+
+▸ Atividades Criminosas:
+  - Extorsão corporativa
+  - Tráfico de armas bioenhanced
+  - Experimentos ilegais com cibernética
+  - Atos incendiários contra símbolos corporativos
+
+═══════════════════════════════════════════════════════════
+
+4.0 ANÁLISE DE CAPACIDADES
+
+4.1 PONTOS FORTES
+
+▸ Carisma Excepcional
+  Habilidade única de inspirar devoção fanática. Seguidores
+  demonstram disposição ao martírio pela causa.
+
+▸ Ideologia Poderosa
+  Movimento transcende ganância. Membros lutam por "causa
+  maior", tornando-os imprevisíveis e perigosos.
+
+▸ Fervor Revolucionário
+  Paixão contagiante que atrai novos recrutas constantemente.
+  Crescimento exponencial da organização.
+
+▸ Táticas de Guerrilha
+  Especialista em ataques surpresa, sabotagem e guerra
+  psicológica contra corporações.
+
+▸ Domínio Territorial
+  Controla setores inteiros da Cidade Baixa, oferecendo
+  serviços e proteção como governo paralelo.
+
+▸ Rede de Propaganda
+  Sistema eficiente de disseminação ideológica e recrutamento.
+
+4.2 PONTOS FRACOS
+
+▸ Fanatismo Cego
+  Visão binária do mundo pode ser explorada para criar
+  divisões internas ou forçar erros táticos.
+
+▸ Dependência de Lealdade
+  Organização baseada em devoção pessoal a Rocco. Sua
+  eliminação causaria colapso parcial do movimento.
+
+▸ Tecnologia Experimental
+  Uso de cibernética não testada pode causar falhas críticas
+  em operações.
+
+▸ Intolerância
+  Recusa em trabalhar com grupos que considera "vendidos".
+  Limita alianças potenciais.
+
+▸ Perfil Alto
+  Rocco é figura pública reconhecível. Túnica característica
+  e presença marcante facilitam identificação.
+
+═══════════════════════════════════════════════════════════
+
+5.0 RELAÇÕES COM OUTRAS FACÇÕES
+
+▸ Família Carbone:
+  Respeitam herança italiana, mas consideram métodos
+  conservadores e "vendidos" às corporações.
+
+▸ Sinaloa:
+  Desprezam ganância e brutalidade. Frequentemente sabotam
+  rotas da Sinaloa.
+
+▸ Bratva:
+  Tolerância relutante. Evitam aliança devido à natureza
+  oportunista.
+
+▸ Dragões de Jade:
+  Admiram disciplina, mas consideram que falta paixão na luta.
+
+▸ Clã Kurogane:
+  Respeitam honra, mas veem tradição como obstáculo à mudança.
+
+═══════════════════════════════════════════════════════════
+
+6.0 AMEAÇA CORPORATIVA
+
+▸ Impacto Direto:
+  - 47 ataques confirmados a instalações ExoCorp
+  - Perdas estimadas: 230 milhões de créditos
+  - 89 baixas entre pessoal de segurança
+  - Sabotagem de 3 projetos de desenvolvimento críticos
+
+▸ Impacto Indireto:
+  - Inspiração para outros grupos revolucionários
+  - Desestabilização de setores controlados
+  - Dano à imagem corporativa
+  - Custos crescentes de segurança
+
+═══════════════════════════════════════════════════════════
+
+7.0 DIRETIVA DE AÇÃO
+
+STATUS: NEUTRALIZAÇÃO AUTORIZADA - PRIORIDADE MÁXIMA
+
+▸ Fase 1: Infiltração Profunda
+  - Inserir agentes em células periféricas da Trindade
+  - Identificar localização dos outros dois líderes
+  - Mapear estrutura de comando completa
+  - Localizar depósitos de armas e laboratórios
+
+▸ Fase 2: Desestabilização Interna
+  - Semear dúvidas sobre liderança através de propaganda
+  - Criar conflitos entre células da organização
+  - Sabotar experimentos de tecnologia experimental
+  - Interceptar rotas de fornecimento
+
+▸ Fase 3: Ataque Coordenado
+  - Operação simultânea contra múltiplas células
+  - Captura ou eliminação dos três líderes
+  - Destruição de infraestrutura crítica
+  - Desmantelamento público da organização
+
+▸ Opção Alfa: Eliminação de Rocco
+  Ataque direto durante evento público. Risco de criar mártir,
+  mas pode desmoralizar movimento imediatamente.
+
+▸ Opção Beta: Captura e Interrogatório
+  Extração forçada para obtenção de inteligência completa
+  sobre estrutura, planos futuros e identidade dos outros
+  líderes. Alto valor tático.
+
+▸ Opção Gama: Difamação Total
+  Campanha de desinformação para destruir credibilidade:
+  - Revelar conexões com crimes não ideológicos
+  - Fabricar evidências de corrupção pessoal
+  - Expor falhas nos experimentos cibernéticos
+  - Associar a atrocidades contra civis
+
+>>> AMEAÇA EXISTENCIAL AO CONTROLE CORPORATIVO <<<
+>>> NEUTRALIZAÇÃO É IMPERATIVA <<<
+>>> AUTORIZADO USO DE FORÇA LETAL MÁXIMA <<<
+
+═══════════════════════════════════════════════════════════
+
+8.0 NOTAS OPERACIONAIS
+
+Rocco representa um tipo de ameaça diferente: não busca poder
+pessoal ou riqueza, mas destruição completa do sistema. Sua
+motivação ideológica pura o torna imune a suborno ou negociação.
+
+A Trindade da Chama é mais que uma gangue - é um movimento com
+potencial de iniciar revolução em massa se não for contida.
+
+Recomendação: Tratamento como ameaça terrorista de nível máximo.
+Não subestimar.
 
 ═══════════════════════════════════════════════════════════
 
