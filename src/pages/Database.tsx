@@ -20,11 +20,25 @@ const Database = () => {
   const handleCommand = (command: string) => {
     const cmd = command.toLowerCase().trim();
     
-    const validCommands = ['nexus', 'lia', 'neia campos', 'apex', 'amanda backer', 'bobby'];
+    // Map commands to their respective reports
+    const commandMap: { [key: string]: string } = {
+      'nexus': 'nexus',
+      'lia': 'lia',
+      'neia campos': 'neia campos',
+      'neia': 'neia campos', // Alias
+      'apex': 'apex',
+      'amanda backer': 'amanda backer',
+      'amaya backer': 'amanda backer', // Alias for updated name
+      'amaya': 'amanda backer', // Short alias
+      'amanda': 'amanda backer', // Short alias
+      'bobby': 'bobby',
+      'bobby huey': 'bobby', // Full name alias
+    };
     
-    if (validCommands.includes(cmd)) {
-      // Pass the command to NexusView via URL parameter
-      window.history.pushState({}, '', `?report=${cmd}`);
+    if (commandMap[cmd]) {
+      const reportName = commandMap[cmd];
+      // Navigate to the specific report
+      navigate(`/database?report=${encodeURIComponent(reportName)}`);
       setActiveView('nexus');
       setShowTerminal(false);
       return true;
