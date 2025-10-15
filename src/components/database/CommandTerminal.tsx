@@ -11,8 +11,8 @@ const CommandTerminal = ({ onCommand, onClose }: CommandTerminalProps) => {
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<string[]>([
     '>>> EXOCORP TERMINAL INICIADO',
-    '>>> COMANDOS DISPONÍVEIS:',
-    '>>> nexus | lia | neia | apex | amanda | bobby | javier | rocco',
+    '>>> SISTEMA DE COMANDO ATIVO',
+    '>>> AGUARDANDO ENTRADA...',
     '>>> _ _ _',
   ]);
   const inputRef = useRef<HTMLInputElement>(null);
