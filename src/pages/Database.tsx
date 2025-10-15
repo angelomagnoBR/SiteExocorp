@@ -15,10 +15,19 @@ type ViewType = 'dossier' | 'gallery' | 'video' | 'nexus' | 'system-status' | nu
 const Database = () => {
   const [activeView, setActiveView] = useState<ViewType>(null);
   const [showTerminal, setShowTerminal] = useState(false);
+  const [roseUnlocked, setRoseUnlocked] = useState(false);
   const navigate = useNavigate();
 
   const handleCommand = (command: string) => {
     const cmd = command.toLowerCase().trim();
+    
+    // Check for Rose command
+    if (cmd === 'rose') {
+      setRoseUnlocked(true);
+      setActiveView('video');
+      setShowTerminal(false);
+      return true;
+    }
     
     // Map commands to their respective reports
     const commandMap: { [key: string]: string } = {
@@ -172,7 +181,7 @@ const Database = () => {
 
           {activeView === 'dossier' && <DossierView />}
           {activeView === 'gallery' && <GalleryView />}
-          {activeView === 'video' && <VideoView />}
+          {activeView === 'video' && <VideoView roseUnlocked={roseUnlocked} />}
           {activeView === 'nexus' && <NexusView />}
           {activeView === 'system-status' && (
             <SystemStatusFullView onClose={() => setActiveView(null)} />

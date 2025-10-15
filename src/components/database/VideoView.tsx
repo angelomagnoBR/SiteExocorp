@@ -1,24 +1,32 @@
 import { useState, useRef } from 'react';
+import { Lock } from 'lucide-react';
 
-const VideoView = () => {
+interface VideoViewProps {
+  roseUnlocked?: boolean;
+}
+
+const VideoView = ({ roseUnlocked = false }: VideoViewProps) => {
   const [selectedVideo, setSelectedVideo] = useState<number | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const videos = [
-    { id: 1, title: 'Naufrágio_de_Navio_Detalhado.mp4', url: '/videos/Naufrágio_de_Navio_Detalhado.mp4', duration: '--:--', type: 'video' },
-    { id: 2, title: 'Cyberpunk_Wanted_Video_Script.mp4', url: '/videos/Cyberpunk_Wanted_Video_Script.mp4', duration: '--:--', type: 'video' },
-    { id: 3, title: 'Cyberpunk_Transformation_Video_Generation.mp4', url: '/videos/Cyberpunk_Transformation_Video_Generation.mp4', duration: '--:--', type: 'video' },
-    { id: 4, title: 'Cyberpunk_Laboratório_Corpos_Gigantes_em_Tubos.mp4', url: '/videos/Cyberpunk_Laboratório_Corpos_Gigantes_em_Tubos.mp4', duration: '--:--', type: 'video' },
-    { id: 5, title: 'Criação_de_Vídeo_Instalação_Científica_Cyberpunk.mp4', url: '/videos/Criação_de_Vídeo_Instalação_Científica_Cyberpunk.mp4', duration: '--:--', type: 'video' },
-    { id: 6, title: 'Denarao_cassino_nyx.mp3', url: '/audios/Denarao_cassino_nyx.mp3', duration: '--:--', type: 'audio' },
-    { id: 7, title: 'Denaro_Campos.mp3', url: '/audios/Denaro_Campos.mp3', duration: '--:--', type: 'audio' },
-    { id: 8, title: 'GRAVAÇÃO_SEGURANÇA_001.mp4', url: '', duration: '03:47', type: 'video' },
-    { id: 9, title: 'INTERCEPTAÇÃO_ÁUDIO_002.mp4', url: '', duration: '12:33', type: 'audio' },
-    { id: 10, title: 'VIGILÂNCIA_REMOTA_003.mp4', url: '', duration: '08:21', type: 'video' },
+    { id: 1, title: 'Naufrágio_de_Navio_Detalhado.mp4', url: '/videos/Naufrágio_de_Navio_Detalhado.mp4', duration: '--:--', type: 'video', classified: false },
+    { id: 2, title: 'Cyberpunk_Wanted_Video_Script.mp4', url: '/videos/Cyberpunk_Wanted_Video_Script.mp4', duration: '--:--', type: 'video', classified: false },
+    { id: 3, title: 'ARQUIVO_SIGILOSO_ROSE.mp4', url: '/videos/Cyberpunk_Transformation_Video_Generation.mp4', duration: '--:--', type: 'video', classified: true },
+    { id: 4, title: 'Cyberpunk_Laboratório_Corpos_Gigantes_em_Tubos.mp4', url: '/videos/Cyberpunk_Laboratório_Corpos_Gigantes_em_Tubos.mp4', duration: '--:--', type: 'video', classified: false },
+    { id: 5, title: 'Criação_de_Vídeo_Instalação_Científica_Cyberpunk.mp4', url: '/videos/Criação_de_Vídeo_Instalação_Científica_Cyberpunk.mp4', duration: '--:--', type: 'video', classified: false },
+    { id: 6, title: 'Denarao_cassino_nyx.mp3', url: '/audios/Denarao_cassino_nyx.mp3', duration: '--:--', type: 'audio', classified: false },
+    { id: 7, title: 'Denaro_Campos.mp3', url: '/audios/Denaro_Campos.mp3', duration: '--:--', type: 'audio', classified: false },
+    { id: 8, title: 'GRAVAÇÃO_SEGURANÇA_001.mp4', url: '', duration: '03:47', type: 'video', classified: false },
+    { id: 9, title: 'INTERCEPTAÇÃO_ÁUDIO_002.mp4', url: '', duration: '12:33', type: 'audio', classified: false },
+    { id: 10, title: 'VIGILÂNCIA_REMOTA_003.mp4', url: '', duration: '08:21', type: 'video', classified: false },
   ];
 
   const handleVideoSelect = (videoId: number) => {
     const video = videos.find(v => v.id === videoId);
+    if (video?.classified && !roseUnlocked) {
+      return; // Blocked if classified and not unlocked
+    }
     if (video?.url) {
       setSelectedVideo(videoId);
     }
@@ -80,36 +88,67 @@ const VideoView = () => {
 
       {/* Video list */}
       <div className="space-y-3">
-        {videos.map((video) => (
-          <div
-            key={video.id}
-            onClick={() => handleVideoSelect(video.id)}
-            className={`border p-4 transition-all cursor-pointer group flex items-center justify-between ${
-              selectedVideo === video.id
-                ? 'border-primary bg-primary/20 neon-border'
-                : 'border-primary/30 bg-card/20 hover:bg-card/40'
-            } ${!video.url ? 'opacity-50 cursor-not-allowed' : ''}`}
-          >
-            <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-input/50 flex items-center justify-center neon-border-magenta group-hover:bg-secondary/20 transition-all">
-                <span className="text-secondary text-xl">▶</span>
+        {videos.map((video) => {
+          const isLocked = video.classified && !roseUnlocked;
+          
+          return (
+            <div
+              key={video.id}
+              onClick={() => handleVideoSelect(video.id)}
+              className={`border p-4 transition-all group flex items-center justify-between ${
+                selectedVideo === video.id
+                  ? 'border-primary bg-primary/20 neon-border'
+                  : isLocked
+                  ? 'border-destructive/50 bg-destructive/10 cursor-not-allowed'
+                  : 'border-primary/30 bg-card/20 hover:bg-card/40 cursor-pointer'
+              } ${!video.url && !isLocked ? 'opacity-50 cursor-not-allowed' : ''}`}
+            >
+              <div className="flex items-center space-x-4">
+                <div className={`w-12 h-12 flex items-center justify-center transition-all ${
+                  isLocked 
+                    ? 'bg-destructive/20 border border-destructive neon-border' 
+                    : 'bg-input/50 neon-border-magenta group-hover:bg-secondary/20'
+                }`}>
+                  {isLocked ? (
+                    <Lock className="text-destructive text-xl" />
+                  ) : (
+                    <span className="text-secondary text-xl">▶</span>
+                  )}
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <p className={`text-sm terminal-text tracking-wider ${
+                      isLocked ? 'text-destructive' : 'text-foreground'
+                    }`}>
+                      {video.title}
+                    </p>
+                    {isLocked && (
+                      <span className="text-[9px] text-destructive terminal-text border border-destructive px-2 py-0.5 animate-pulse">
+                        SIGILOSO
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-[10px] text-muted-foreground terminal-text mt-1">
+                    {isLocked 
+                      ? 'ACESSO RESTRITO // AUTORIZAÇÃO NECESSÁRIA' 
+                      : `REGISTRO: 2225.10.09 // DURAÇÃO: ${video.duration}`
+                    }
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="text-sm text-foreground terminal-text tracking-wider">
-                  {video.title}
-                </p>
-                <p className="text-[10px] text-muted-foreground terminal-text mt-1">
-                  REGISTRO: 2225.10.09 // DURAÇÃO: {video.duration}
-                </p>
-              </div>
+              {video.url && !isLocked && (
+                <div className="text-xs text-primary terminal-text opacity-0 group-hover:opacity-100 transition-opacity">
+                  CARREGAR &gt;&gt;
+                </div>
+              )}
+              {isLocked && (
+                <div className="text-xs text-destructive terminal-text">
+                  [ BLOQUEADO ]
+                </div>
+              )}
             </div>
-            {video.url && (
-              <div className="text-xs text-primary terminal-text opacity-0 group-hover:opacity-100 transition-opacity">
-                CARREGAR &gt;&gt;
-              </div>
-            )}
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <div className="mt-6 p-4 neon-border bg-primary/10">
