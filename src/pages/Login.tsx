@@ -14,7 +14,7 @@ const Login = () => {
     e.preventDefault();
     
     // Specific credentials validation (case-insensitive)
-    if (userId.toLowerCase() === 'denaro' && password === '569437') {
+    if (userId.toLowerCase() === 'denaro' && (password === '569437' || password === '1722')) {
       // Store auth in sessionStorage for this fictional system
       sessionStorage.setItem('auth', 'authenticated');
       sessionStorage.setItem('user', userId);
