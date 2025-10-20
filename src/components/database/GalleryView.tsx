@@ -1,4 +1,10 @@
+import { useState } from 'react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { ScrollArea } from '@/components/ui/scroll-area';
+
 const GalleryView = () => {
+  const [showEncryptedText, setShowEncryptedText] = useState(false);
+  
   const surveillanceImages = [
     { id: 1, title: 'SETOR_CRESCIMENTO.webp', url: '/images/Setor_de_Crescimento.webp' },
     { id: 2, title: 'LANTERNA_VERMELHA.jpeg', url: '/images/Lanterna_Vermelha.jpeg' },
@@ -8,7 +14,15 @@ const GalleryView = () => {
     { id: 6, title: 'RITUAL_AGHORIS.webp', url: '/images/Cyberpunk_Aghoris_Ritual.webp' },
     { id: 7, title: 'CAMINHANTES_VAZIO.webp', url: '/images/Caminhantes_do_Vazio.webp' },
     { id: 8, title: 'FADE_TO_BLACK.webp', url: '/images/Fade_to_Black.webp' },
+    { id: 9, title: 'NEIA_CAMPOS.webp', url: '/images/NPC_-_Neya_Campos.webp', encrypted: true },
+    { id: 10, title: 'FABRICA_HUMANOS_2.webp', url: '/images/Fabrica_de_Humanos_2.webp' },
   ];
+
+  const handleImageClick = (img: typeof surveillanceImages[0]) => {
+    if (img.encrypted) {
+      setShowEncryptedText(true);
+    }
+  };
 
   return (
     <div className="p-8 h-full overflow-auto">
@@ -25,6 +39,7 @@ const GalleryView = () => {
         {surveillanceImages.map((img) => (
           <div
             key={img.id}
+            onClick={() => handleImageClick(img)}
             className="neon-border bg-card/30 backdrop-blur-sm p-4 hover:bg-card/50 transition-all cursor-pointer group"
           >
             <div className="aspect-video bg-input/50 flex items-center justify-center mb-4 relative overflow-hidden">
@@ -34,6 +49,11 @@ const GalleryView = () => {
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+              {img.encrypted && (
+                <div className="absolute top-2 right-2 px-2 py-1 bg-destructive/90 text-destructive-foreground text-[10px] terminal-text font-bold">
+                  ENCRYPTED
+                </div>
+              )}
             </div>
             <p className="text-xs text-primary terminal-text tracking-wider">
               {img.title}
@@ -50,6 +70,47 @@ const GalleryView = () => {
           ✓ {surveillanceImages.length} IMAGENS DE VIGILÂNCIA CARREGADAS
         </p>
       </div>
+
+      <Dialog open={showEncryptedText} onOpenChange={setShowEncryptedText}>
+        <DialogContent className="max-w-4xl max-h-[80vh] bg-background/95 backdrop-blur-sm border-primary">
+          <DialogHeader>
+            <DialogTitle className="text-destructive terminal-text tracking-widest">
+              [DOCUMENTO CRIPTOGRAFADO - NEIA CAMPOS]
+            </DialogTitle>
+          </DialogHeader>
+          <ScrollArea className="h-[60vh] w-full pr-4">
+            <pre className="text-xs terminal-text text-muted-foreground whitespace-pre-wrap font-mono">
+              {`ORJ.08 [UHODWÓULR_GH_OHDOGDGH_QHLD]
+
+WÍWXOR: Dydoldçãr Frpsruwdphqwdo gd Frplvváuld Fdpsrv
+
+FODVVLILFDÇÃR: DOSKD-VRPEUD / DOWR ULVFR
+
+GDWD GD DYDOLDÇÃR: 2225.10.19
+
+Vxpáulr Hahfxwlyr:
+
+D Frplvváuld gh Sroífld Qhld Fdpsrv dsuhvhqwd ghvylrv frpsruwdphqwdlv h gh frpxqlfdçãr txh hafhghp dv pdujhqv gh wrohuâqfld dfhlwáyhlv. D ohdogdgh gr dwlyr, hperud fuxfldo sdud d hvwdelolcdçãr gd Crqd 7 (Flgdgh Edlad), é frqvlghudgd frpsurphwlgd.
+
+Dqáolvh Ghwdokdgd:
+
+1. Ghvylr gh Urwd: Irl ghwhfwdgr xp ghvylr qãr dxwrulcdgr qdv urwdv gh sdwuxokd prqlwrudgdv shod Xqlgdgh gh Yljloâqfld. Fdpsrv xwlolcrx urwdv vhfxqgáuldv, qãr uhjlvwudgdv qr Surwrfror Sdguãr gh Hahfxçãr (SSH), hp wuêv rfdvlõhv glvwlqwdv qdv úowlpdv 48 krudv. D dqáolvh grv ghvylrv vxjhuh hqfrqwurv glvfuhwrv frp hqwlgdghv qãr lghqwlilfdgdv.
+
+2. Frpxqlfdçõhv Fliudgdv: Lqwhufhswdçãr gh xp sdguãr gh frpxqlfdçãr qãr-sdguãr. Fdpsrv xwlolcrx xp surwrfror gh fulswrjudild revrohwr, pdv dowdphqwh frpsohar, sdud frqwdwrv hawhuqrv. R frqwhúgr gdv frpxqlfdçõhv shupdqhfh lohjíyho, pdv d dçãr gh rfxowdçãr shu vh é xp vlqdo gh dohuwd gh Qíyho 3.
+
+3. Klsówhvh gh Frqwuroh Hawhuqr: D shuirupdqfh hilflhqwh gh Fdpsrv hp ghvpdqwhodu d lqiudhvwuxwxud gh jdqjxhv é qrwáyho. Qr hqwdqwr, vxd dvfhqvãr phwhóulfd h d surqwlgãr sdud djlu vxjhuhp xpd prwlydçãr txh wudqvfhqgh d phud dpelçãr. D sulqflsdo klsówhvh é txh d Frplvváuld hvwhmd vhqgr frqwurodgd, rx hvwhmd hp doldqçd, frp xpd hqwlgdgh frusrudwlyd ulydo.
+
+Frqfoxvãr:
+
+D Frplvváuld Fdpsrv é xpd ihuudphqwd srghurvd, pdv lqvwáyho. Hod qãr é pdlv frqvlghudgd xpd djhqwh gh frqildqçd lqwhjudo. D vxd hilfáfld hp holplqdu d uhvlvwêqfld é vhfxqgáuld dr ulvfr txh hod uhsuhvhqwd sdud d khjhprqld gr Dutxlwhwr.
+
+Uhfrphqgdçãr:
+
+Lqwhqvlilfdu d yljloâqfld gh Qíyho Doskd. Pdqwhu r dwlyr rshudflrqdo sdud fxpsulu d djhqgd gh sdflilfdçãr, pdv suhsdudu xp Surwrfror gh Qhxwudolcdçãr gh Hphujêqfld (SQH) sdud vhu hahfxwdgr qr prphqwr hp txh vhx dolqkdphqwr hawhuqr iru frqilupdgr. D txhgd gh S. Gl qãr srgh deulu fdplqkr sdud r grpíqlr gh xp ulydo.`}
+            </pre>
+          </ScrollArea>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
