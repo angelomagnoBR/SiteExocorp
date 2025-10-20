@@ -21,7 +21,8 @@ const VideoView = ({ roseUnlocked = false }: VideoViewProps) => {
     { id: 9, title: 'Audio_vazado_operação_aurora.mp3', url: '/audios/Audio_vazado_operação_aurora.mp3', duration: '--:--', type: 'audio', classified: false },
     { id: 10, title: 'GRAVAÇÃO_SEGURANÇA_001.mp4', url: '/videos/GRAVAÇÃO_SEGURANÇA_001.mp4', duration: '03:47', type: 'video', classified: false },
     { id: 11, title: 'INTERCEPTAÇÃO_ÁUDIO_002.mp4', url: '/audios/Zhen_Liu_novo_lider_autoritario.mp3', duration: '12:33', type: 'audio', classified: false },
-    { id: 12, title: 'VIGILÂNCIA_REMOTA_003.mp4', url: '', duration: '08:21', type: 'video', classified: false },
+    { id: 12, title: 'VIGILÂNCIA_REMOTA_003.mp4', url: '/videos/VIGILÂNCIA_REMOTA_003.mp4', duration: '08:21', type: 'video', classified: false },
+    { id: 13, title: 'Zhen_Liu_uma_nova_ameaça.mp3', url: '/audios/Zhen_Liu_uma_nova_ameaça.mp3', duration: '--:--', type: 'audio', classified: false },
   ];
 
   const handleVideoSelect = (videoId: number) => {
