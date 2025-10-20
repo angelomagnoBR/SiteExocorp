@@ -17,9 +17,11 @@ const VideoView = ({ roseUnlocked = false }: VideoViewProps) => {
     { id: 5, title: 'Criação_de_Vídeo_Instalação_Científica_Cyberpunk.mp4', url: '/videos/Criação_de_Vídeo_Instalação_Científica_Cyberpunk.mp4', duration: '--:--', type: 'video', classified: false },
     { id: 6, title: 'Denarao_cassino_nyx.mp3', url: '/audios/Denarao_cassino_nyx.mp3', duration: '--:--', type: 'audio', classified: false },
     { id: 7, title: 'Denaro_Campos.mp3', url: '/audios/Denaro_Campos.mp3', duration: '--:--', type: 'audio', classified: false },
-    { id: 8, title: 'GRAVAÇÃO_SEGURANÇA_001.mp4', url: '', duration: '03:47', type: 'video', classified: false },
-    { id: 9, title: 'INTERCEPTAÇÃO_ÁUDIO_002.mp4', url: '', duration: '12:33', type: 'audio', classified: false },
-    { id: 10, title: 'VIGILÂNCIA_REMOTA_003.mp4', url: '', duration: '08:21', type: 'video', classified: false },
+    { id: 8, title: 'Vazamento_op_aurora.mp3', url: '/audios/Vazamento_op_aurora.mp3', duration: '--:--', type: 'audio', classified: false },
+    { id: 9, title: 'Audio_vazado_operação_aurora.mp3', url: '/audios/Audio_vazado_operação_aurora.mp3', duration: '--:--', type: 'audio', classified: false },
+    { id: 10, title: 'GRAVAÇÃO_SEGURANÇA_001.mp4', url: '', duration: '03:47', type: 'video', classified: false },
+    { id: 11, title: 'INTERCEPTAÇÃO_ÁUDIO_002.mp4', url: '', duration: '12:33', type: 'audio', classified: false },
+    { id: 12, title: 'VIGILÂNCIA_REMOTA_003.mp4', url: '', duration: '08:21', type: 'video', classified: false },
   ];
 
   const handleVideoSelect = (videoId: number) => {
