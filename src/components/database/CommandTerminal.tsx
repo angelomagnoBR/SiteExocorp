@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
-import { X } from 'lucide-react';
+import { X, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { useNavigate } from 'react-router-dom';
 
 interface CommandTerminalProps {
   onCommand: (command: string) => boolean;
@@ -9,12 +11,15 @@ interface CommandTerminalProps {
 
 const CommandTerminal = ({ onCommand, onClose }: CommandTerminalProps) => {
   const [input, setInput] = useState('');
+  const [errorCount, setErrorCount] = useState(0);
+  const [showSecurityAlert, setShowSecurityAlert] = useState(false);
   const [history, setHistory] = useState<string[]>([
     '>>> EXOCORP TERMINAL INICIADO',
     '>>> SISTEMA DE COMANDO ATIVO',
     '>>> AGUARDANDO ENTRADA...',
     '>>> _ _ _',
   ]);
+  const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
   const historyEndRef = useRef<HTMLDivElement>(null);
 
@@ -25,6 +30,12 @@ const CommandTerminal = ({ onCommand, onClose }: CommandTerminalProps) => {
   useEffect(() => {
     historyEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [history]);
+
+  const handleSecurityReboot = () => {
+    localStorage.clear();
+    sessionStorage.clear();
+    navigate('/');
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,8 +48,18 @@ const CommandTerminal = ({ onCommand, onClose }: CommandTerminalProps) => {
     if (commandExecuted) {
       newHistory.push('>>> COMANDO EXECUTADO COM SUCESSO');
       newHistory.push('>>> CARREGANDO DADOS...');
+      setErrorCount(0); // Reset error count on successful command
     } else {
+      const newErrorCount = errorCount + 1;
+      setErrorCount(newErrorCount);
       newHistory.push('>>> ERRO: COMANDO NÃO RECONHECIDO');
+      newHistory.push(`>>> TENTATIVA ${newErrorCount} DE 5`);
+      
+      if (newErrorCount >= 5) {
+        newHistory.push('>>> ALERTA DE SEGURANÇA: VIOLAÇÃO DE PROTOCOLO DETECTADA');
+        newHistory.push('>>> INICIANDO REINICIALIZAÇÃO DO SISTEMA...');
+        setShowSecurityAlert(true);
+      }
     }
 
     setHistory(newHistory);
@@ -105,6 +126,34 @@ const CommandTerminal = ({ onCommand, onClose }: CommandTerminalProps) => {
         </form>
 
       </div>
+
+      {/* Security Alert Dialog */}
+      <Dialog open={showSecurityAlert} onOpenChange={setShowSecurityAlert}>
+        <DialogContent className="max-w-2xl border-destructive border-4 bg-destructive/10 backdrop-blur-md">
+          <div className="flex flex-col items-center justify-center space-y-6 p-8">
+            <AlertTriangle className="h-24 w-24 text-destructive animate-pulse" />
+            <div className="text-center space-y-4">
+              <h2 className="text-3xl font-bold text-destructive terminal-text tracking-wider">
+                ⚠ ALERTA DE SEGURANÇA ⚠
+              </h2>
+              <p className="text-xl text-destructive/90 terminal-text">
+                VIOLAÇÃO DE PROTOCOLO DETECTADA
+              </p>
+              <p className="text-lg text-muted-foreground terminal-text">
+                System Reboot Initiated...
+              </p>
+            </div>
+            <Button
+              onClick={handleSecurityReboot}
+              variant="destructive"
+              size="lg"
+              className="terminal-text text-lg px-8 animate-pulse"
+            >
+              [ REINICIAR SISTEMA ]
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
