@@ -9,17 +9,26 @@ import NexusView from '@/components/database/NexusView';
 import CommandTerminal from '@/components/database/CommandTerminal';
 import SystemStatus from '@/components/database/SystemStatus';
 import SystemStatusFullView from '@/components/database/SystemStatusFullView';
+import AuditLogView from '@/components/database/AuditLogView';
 
 type ViewType = 'dossier' | 'gallery' | 'video' | 'nexus' | 'system-status' | null;
 
 const Database = () => {
   const [activeView, setActiveView] = useState<ViewType>(null);
   const [showTerminal, setShowTerminal] = useState(false);
+  const [showAuditLog, setShowAuditLog] = useState(false);
   const [roseUnlocked, setRoseUnlocked] = useState(false);
   const navigate = useNavigate();
 
   const handleCommand = (command: string) => {
     const cmd = command.toLowerCase().trim();
+    
+    // Check for Audit Log command
+    if (cmd === 'audit_log') {
+      setShowAuditLog(true);
+      setShowTerminal(false);
+      return true;
+    }
     
     // Check for Rose command
     if (cmd === 'rose') {
@@ -156,14 +165,18 @@ const Database = () => {
 
         {/* Main content area */}
         <main className="flex-1 overflow-auto relative z-10">
-          {showTerminal && (
-            <CommandTerminal 
-              onCommand={handleCommand}
-              onClose={() => setShowTerminal(false)}
-            />
-          )}
-          
-          {!activeView && (
+          {showAuditLog ? (
+            <AuditLogView onClose={() => setShowAuditLog(false)} />
+          ) : (
+            <>
+              {showTerminal && (
+                <CommandTerminal 
+                  onCommand={handleCommand}
+                  onClose={() => setShowTerminal(false)}
+                />
+              )}
+              
+              {!activeView && (
             <div className="h-full flex items-center justify-center">
               <div className="text-center">
                 <div className="text-6xl text-primary/20 mb-4 animate-pulse-neon">
@@ -185,6 +198,8 @@ const Database = () => {
           {activeView === 'nexus' && <NexusView />}
           {activeView === 'system-status' && (
             <SystemStatusFullView onClose={() => setActiveView(null)} />
+          )}
+            </>
           )}
         </main>
       </div>
