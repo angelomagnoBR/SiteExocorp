@@ -53,7 +53,6 @@ const CommandTerminal = ({ onCommand, onClose }: CommandTerminalProps) => {
       const newErrorCount = errorCount + 1;
       setErrorCount(newErrorCount);
       newHistory.push('>>> ERRO: COMANDO NÃO RECONHECIDO');
-      newHistory.push(`>>> TENTATIVA ${newErrorCount} DE 5`);
       
       if (newErrorCount >= 5) {
         newHistory.push('>>> ALERTA DE SEGURANÇA: VIOLAÇÃO DE PROTOCOLO DETECTADA');
