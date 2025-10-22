@@ -3,6 +3,7 @@ import { X, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useNavigate } from 'react-router-dom';
+import { supabase } from '@/lib/supabaseClient';
 
 interface CommandTerminalProps {
   onCommand: (command: string) => boolean;
@@ -31,7 +32,20 @@ const CommandTerminal = ({ onCommand, onClose }: CommandTerminalProps) => {
     historyEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [history]);
 
+  const logAction = async (actionDescription: string) => {
+    try {
+      await supabase.from('access_logs').insert({
+        timestamp: new Date().toISOString(),
+        user_id: 'CONSOLE_USER',
+        action_description: actionDescription,
+      });
+    } catch (error) {
+      console.error('Failed to log action:', error);
+    }
+  };
+
   const handleSecurityReboot = () => {
+    logAction('SECURITY_BREACH: 5 failed attempts. System reboot.');
     localStorage.clear();
     sessionStorage.clear();
     navigate('/');
@@ -46,10 +60,12 @@ const CommandTerminal = ({ onCommand, onClose }: CommandTerminalProps) => {
     const commandExecuted = onCommand(input);
     
     if (commandExecuted) {
+      logAction(`TERMINAL_ACCESS_GRANTED: Executed command: ${input}`);
       newHistory.push('>>> COMANDO EXECUTADO COM SUCESSO');
       newHistory.push('>>> CARREGANDO DADOS...');
       setErrorCount(0); // Reset error count on successful command
     } else {
+      logAction('TERMINAL_ACCESS_DENIED: Invalid command attempt.');
       const newErrorCount = errorCount + 1;
       setErrorCount(newErrorCount);
       newHistory.push('>>> ERRO: COMANDO NÃO RECONHECIDO');
