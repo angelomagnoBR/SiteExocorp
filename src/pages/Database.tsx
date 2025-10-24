@@ -25,12 +25,14 @@ const Database = () => {
   const handleCommand = (command: string) => {
     const cmd = command.toLowerCase().trim();
     
-    // PISTA 2: Comando LIA - Libera o coelho na galeria (mas NÃO abre automaticamente)
+    // PISTA 2: Comando LIA - Abre dossiê da Lia E libera o coelho
     if (cmd === 'lia') {
       import('@/lib/argProgress').then(({ registrarPistaEncontrada }) => {
-        // Registra a pista COELHO (necessária para mostrar o rabbit)
+        // Registra a pista COELHO (necessária para mostrar o rabbit na galeria)
         registrarPistaEncontrada('COELHO');
-        // NÃO abre galeria - usuário deve ir manualmente para "Registros de Vigilância"
+        // Abre o dossiê da Lia (NexusView com report=lia)
+        navigate('/database?report=lia');
+        setActiveView('nexus');
         setShowTerminal(false);
       });
       return true;
