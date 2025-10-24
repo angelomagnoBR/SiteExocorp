@@ -370,7 +370,7 @@ STATUS: FUGITIVA - AMEAÇA ATIVA
 IDENTIFICAÇÃO
 
 Nome Completo: Neia Campos
-Idade: 32 anos
+Idade: 42 anos
 Última Localização: Setor Industrial, Zona 9
 Afiliação: Nexus (Célula de Resistência)
 Especialização: Hacking e Infiltração de Sistemas
@@ -671,7 +671,7 @@ STATUS: LÍDER DO NEXUS - PROCURADO VIVO
 IDENTIFICAÇÃO
 
 Nome: Bobby Huey
-Idade: 41 anos
+Idade: 71 anos
 Origem: Distrito Militar - Zona 2
 Posição: Líder Tático do Nexus
 Histórico: Ex-Tenente das Forças Especiais ExoCorp
@@ -857,14 +857,6 @@ Digite a palavra que V usou para destruir o Parlamento.
 Digite a palavra que representa a VINGANÇA contra a tirania.
 
 Digite e junte-se a nós.'
-
-═══════════════════════════════════════════════════════════════════
-
-COMANDO FINAL:
-
->>> VENDETTA <<<
-
-Digite no terminal para iniciar a revolução.
 
 ═══════════════════════════════════════════════════════════════════
 
