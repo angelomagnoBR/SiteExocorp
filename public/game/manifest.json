@@ -1,0 +1,33 @@
+{
+  "name": "Nova York Exocorp: O Despertar",
+  "short_name": "NY Exocorp",
+  "description": "RPG narrativo cyberpunk baseado em campanha original",
+  "version": "1.0.0",
+  "start_url": "./index.html",
+  "display": "fullscreen",
+  "orientation": "landscape-primary",
+  "theme_color": "#00FF41",
+  "background_color": "#0A0A0A",
+  "lang": "pt-BR",
+  "categories": ["games", "entertainment"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiBmaWxsPSIjMEEwQTBBIi8+Cjx0ZXh0IHg9Ijk2IiB5PSIxMDAiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiMwMEZGNDEiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkVYTzwvdGV4dD4KPHN2Zz4=",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiBmaWxsPSIjMEEwQTBBIi8+Cjx0ZXh0IHg9IjI1NiIgeT0iMjc2IiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjEyOCIgZmlsbD0iIzAwRkY0MSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RVhPPC90ZXh0Pgo8L3N2Zz4=",
+      "sizes": "512x512", 
+      "type": "image/svg+xml"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiB2aWV3Qm94PSIwIDAgMTkyMCAxMDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiBmaWxsPSIjMEEwQTBBIi8+Cjx0ZXh0IHg9Ijk2MCIgeT0iNTQwIiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjcyIiBmaWxsPSIjMDBGRjQxIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5OT1ZBIFlPUksgRVhPQ09SUDwvdGV4dD4KPHN2Zz4=",
+      "sizes": "1920x1080",
+      "type": "image/svg+xml",
+      "form_factor": "wide"
+    }
+  ]
+}

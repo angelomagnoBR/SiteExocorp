@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova York Exocorp: O Despertar - Ato 1</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#00FF41">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --cyan: #00FFFF;
+            --magenta: #FF00FF;
+            --green: #00FF41;
+            --red: #FF0000;
+            --purple: #9B30FF;
+            --black: #0A0A0A;
+            --dark-gray: #1A1A1A;
+            --light-gray: #E0E0E0;
+        }
+
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background: var(--black);
+            color: var(--green);
+            overflow: hidden;
+            position: relative;
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
+        }
+
+        /* Efeitos Cyberpunk */
+        .scanlines {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px);
+            pointer-events: none; z-index: 999; animation: flicker 0.3s infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 0.95; }
+            50% { opacity: 0.98; }
+        }
+
+        .crt-effect {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(ellipse at center, transparent 0%, rgba(0,255,65,0.05) 100%);
+            pointer-events: none; z-index: 998;
+        }
+
+        /* Tela Inicial */
+        #title-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, var(--black) 0%, #1a0a1a 50%, var(--black) 100%);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 1000; animation: fadeIn 1s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .title-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5em; font-weight: 900;
+            background: linear-gradient(90deg, var(--cyan), var(--magenta), var(--green));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-align: center; margin-bottom: 20px;
+            text-shadow: 0 0 30px var(--cyan);
+            animation: glitchTitle 5s infinite;
+        }
+
+        @keyframes glitchTitle {
+            0%, 90%, 100% { transform: translate(0); }
+            91% { transform: translate(-2px, 2px); }
+            92% { transform: translate(2px, -2px); }
+        }
+
+        .subtitle {
+            font-size: 1.5em; color: var(--magenta);
+            text-transform: uppercase; letter-spacing: 5px;
+            margin-bottom: 15px;
+        }
+
+        .subtitle-small {
+            font-size: 1em; color: var(--green);
+            text-transform: uppercase; letter-spacing: 3px;
+            margin-bottom: 50px;
+            opacity: 0.9;
+        }
+
+        .menu-buttons {
+            display: flex; flex-direction: column; gap: 20px;
+        }
+
+        .menu-btn {
+            font-family: 'Orbitron', sans-serif;
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid var(--cyan);
+            color: var(--cyan); padding: 15px 60px;
+            font-size: 1.2em; cursor: pointer;
+            transition: all 0.3s; text-transform: uppercase;
+            position: relative; overflow: hidden;
+        }
+
+        .menu-btn::before {
+            content: ''; position: absolute; top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+            transition: left 0.5s;
+        }
+
+        .menu-btn:hover::before {
+            left: 100%;
+        }
+
+        .menu-btn:hover {
+            background: rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 20px var(--cyan);
+            transform: scale(1.05);
+        }
+
+        /* Tela de Seleção de Personagem */
+        #character-select {
+            display: none; position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%; background: var(--black);
+            z-index: 900; overflow-y: auto; padding: 40px 20px;
+        }
+
+        .char-select-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5em; text-align: center;
+            color: var(--magenta); margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .character-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px; max-width: 1400px; margin: 0 auto;
+        }
+
+        .character-card {
+            background: rgba(26, 26, 26, 0.9);
+            border: 2px solid var(--cyan);
+            padding: 20px; cursor: pointer;
+            transition: all 0.3s; position: relative;
+        }
+
+        .character-card:hover {
+            border-color: var(--magenta);
+            box-shadow: 0 0 30px var(--magenta);
+            transform: translateY(-10px);
+        }
+
+        .char-portrait {
+            width: 100%; height: 200px;
+            background: linear-gradient(135deg, var(--dark-gray), var(--black));
+            border: 2px solid var(--cyan);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 3em; margin-bottom: 15px;
+        }
+
+        .char-portrait-img {
+            width: 100%; height: 200px;
+            object-fit: cover;
+            border: 2px solid var(--cyan);
+            margin-bottom: 15px;
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
+        }
+
+        .char-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5em; color: var(--cyan);
+            margin-bottom: 10px;
+        }
+
+        .char-role {
+            color: var(--magenta); font-size: 0.9em;
+            margin-bottom: 15px; text-transform: uppercase;
+        }
+
+        .char-description {
+            color: var(--light-gray); font-size: 0.85em;
+            line-height: 1.6; margin-bottom: 15px;
+        }
+
+        .char-abilities {
+            border-top: 1px solid var(--cyan);
+            padding-top: 15px;
+        }
+
+        .ability {
+            color: var(--green); font-size: 0.8em;
+            margin-bottom: 5px;
+        }
+
+        /* Jogo Principal */
+        #game-container {
+            display: none; width: 100vw; height: 100vh;
+            position: fixed; top: 0; left: 0;
+        }
+
+        /* HUD Superior */
+        .game-hud {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 2px solid var(--cyan);
+            padding: 15px 20px; z-index: 100;
+            display: flex; justify-content: space-between;
+            align-items: center;
+        }
+
+        .hud-section {
+            display: flex; gap: 30px;
+        }
+
+        .hud-item {
+            display: flex; flex-direction: column; gap: 5px;
+        }
+
+        .hud-label {
+            font-size: 0.85em; color: var(--cyan);
+            opacity: 0.7; text-transform: uppercase;
+        }
+
+        .hud-value {
+            font-size: 1.2em; color: var(--green);
+            font-weight: bold;
+        }
+
+        .btn-save {
+            font-family: 'Orbitron', sans-serif;
+            background: rgba(0, 255, 65, 0.1);
+            border: 2px solid var(--green);
+            color: var(--green);
+            padding: 8px 20px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .btn-save:hover {
+            background: rgba(0, 255, 65, 0.3);
+            box-shadow: 0 0 15px var(--green);
+            transform: scale(1.05);
+        }
+
+        .morality-bar {
+            width: 200px; height: 15px;
+            background: var(--dark-gray);
+            border: 2px solid var(--cyan);
+            position: relative; overflow: hidden;
+        }
+
+        .morality-fill {
+            height: 100%; width: 50%;
+            background: linear-gradient(90deg, var(--green), var(--cyan), var(--magenta), var(--red));
+            transition: width 0.5s;
+        }
+
+        /* Área de Jogo - SPLIT SCREEN 50/50 */
+        .game-main {
+            margin-top: 80px; height: calc(100vh - 80px);
+            display: flex;
+        }
+
+        /* LADO ESQUERDO: Background 100% Visível */
+        .game-main::before {
+            content: '';
+            position: fixed;
+            left: 0;
+            top: 80px;
+            width: 50vw;
+            height: calc(100vh - 80px);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        /* LADO DIREITO: Conteúdo do Jogo */
+        .game-scene {
+            margin-left: 50vw;
+            width: 50vw;
+            padding: 30px;
+            overflow-y: auto;
+            background: var(--black);
+            position: relative;
+            z-index: 1;
+        }
+
+        .scene-image {
+            width: 100%; max-height: 300px;
+            object-fit: cover; border: 2px solid var(--cyan);
+            margin-bottom: 20px; filter: saturate(1.2) contrast(1.1);
+        }
+
+        .dialogue-box {
+            background: rgba(10, 10, 10, 0.98);
+            border: 2px solid var(--cyan);
+            padding: 20px; margin-bottom: 20px;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .speaker {
+            color: var(--magenta); font-weight: bold;
+            margin-bottom: 10px; font-size: 1.5em;
+            text-transform: uppercase;
+            text-shadow: 0 0 8px var(--magenta);
+        }
+
+        .dialogue-text {
+            color: var(--light-gray); line-height: 1.8;
+            font-size: 1.3em;
+        }
+
+        .narrative {
+            background: rgba(0, 10, 5, 0.95);
+            border-left: 4px solid var(--green);
+            padding: 15px; margin-bottom: 20px;
+            color: var(--green); font-style: italic;
+            font-size: 1.2em;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
+        }
+
+        .system-message {
+            background: rgba(20, 0, 20, 0.95);
+            border: 2px solid var(--magenta);
+            padding: 15px; margin-bottom: 20px;
+            color: var(--magenta); text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2em;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Escolhas - NOVO LAYOUT LEGÍVEL */
+        .choices-container {
+            display: flex; flex-direction: column;
+            gap: 20px; margin-top: 40px;
+            padding: 20px;
+            background: rgba(5, 5, 5, 0.98);
+            border: 3px solid var(--cyan);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.9);
+        }
+
+        .choice {
+            background: rgba(20, 20, 20, 0.98);
+            border: 3px solid var(--cyan);
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .choice::before {
+            content: '▶';
+            position: absolute;
+            left: -35px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.8em;
+            color: var(--cyan);
+            transition: all 0.3s;
+            text-shadow: 0 0 10px var(--cyan);
+        }
+
+        .choice:hover {
+            background: rgba(0, 255, 255, 0.15);
+            border-color: var(--magenta);
+            transform: translateX(15px) scale(1.02);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+        }
+
+        .choice:hover::before {
+            left: -25px;
+            color: var(--magenta);
+            text-shadow: 0 0 15px var(--magenta);
+        }
+
+        .choice.human {
+            border-color: var(--green);
+        }
+
+        .choice.human:hover {
+            border-color: var(--green);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
+        }
+
+        .choice.pragmatic {
+            border-color: var(--red);
+        }
+
+        .choice.pragmatic:hover {
+            border-color: var(--red);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+        }
+
+        .choice-title {
+            color: var(--cyan);
+            font-weight: bold;
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 12px;
+            font-size: 1.5em;
+            text-shadow: 0 0 8px var(--cyan);
+        }
+
+        .choice-desc {
+            color: var(--light-gray);
+            font-size: 1.2em;
+            line-height: 1.6;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+        }
+
+        .choice-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            font-size: 0.75em;
+            margin-right: 12px;
+            border-radius: 3px;
+            font-weight: bold;
+            box-shadow: 0 0 10px currentColor;
+        }
+
+        .tag-human {
+            background: var(--green); color: var(--black);
+        }
+
+        .tag-pragmatic {
+            background: var(--red); color: var(--black);
+        }
+
+        .tag-neutral {
+            background: var(--cyan); color: var(--black);
+        }
+
+        /* Painel Lateral - OCULTO NO SPLIT SCREEN */
+        .side-panel {
+            display: none;
+        }
+
+        .panel-section {
+            margin-bottom: 25px;
+        }
+
+        .panel-title {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--magenta); font-size: 1.1em;
+            margin-bottom: 15px; text-transform: uppercase;
+            border-bottom: 1px solid var(--cyan);
+            padding-bottom: 8px;
+        }
+
+        .stat-item {
+            display: flex; justify-content: space-between;
+            margin-bottom: 8px; font-size: 0.9em;
+        }
+
+        .stat-label { color: var(--cyan); }
+        .stat-value { color: var(--green); }
+
+        .mission-objective {
+            background: rgba(0, 255, 255, 0.1);
+            border-left: 3px solid var(--cyan);
+            padding: 10px; margin-bottom: 10px;
+            font-size: 0.85em;
+        }
+
+        .objective-complete {
+            border-left-color: var(--green);
+            opacity: 0.6; text-decoration: line-through;
+        }
+
+        /* Botões de Ação */
+        .action-buttons {
+            display: flex; gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            font-family: 'Orbitron', sans-serif;
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid var(--cyan);
+            color: var(--cyan); padding: 10px 20px;
+            cursor: pointer; transition: all 0.3s;
+            text-transform: uppercase; font-size: 0.9em;
+        }
+
+        .btn:hover {
+            background: rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 15px var(--cyan);
+        }
+
+        .btn:disabled {
+            opacity: 0.3; cursor: not-allowed;
+        }
+
+        /* Cabeçalhos de Cena - Maiores */
+        .scene-header h2 {
+            font-size: 2em !important;
+            margin-bottom: 10px;
+        }
+        
+        .scene-header p {
+            font-size: 1.3em !important;
+        }
+
+        /* Responsivo */
+        @media (max-width: 1024px) {
+            .game-main::before { display: none; }
+            .game-scene { margin-left: 0; width: 100%; }
+            .title-logo { font-size: 2.5em; }
+        }
+
+        /* Animações */
+        .fade-in {
+            animation: fadeIn 0.5s;
+        }
+
+        .slide-in {
+            animation: slideIn 0.5s;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Loading */
+        .loading {
+            position: fixed; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5em; color: var(--cyan);
+            z-index: 2000;
+        }
+
+        .loading::after {
+            content: ''; animation: dots 1.5s infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: ''; }
+            40% { content: '.'; }
+            60% { content: '..'; }
+            80%, 100% { content: '...'; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Efeitos Visuais -->
+    <div class="scanlines"></div>
+    <div class="crt-effect"></div>
+
+    <!-- Tela Inicial -->
+    <div id="title-screen">
+        <h1 class="title-logo">ECOS DA HUMANIDADE</h1>
+        <div class="subtitle">Nova York Exocorp</div>
+        <div class="subtitle-small">O Despertar - Ato 1</div>
+        <div class="menu-buttons">
+            <button class="menu-btn" onclick="showCharacterSelect()">NOVO JOGO</button>
+            <button class="menu-btn" onclick="loadGame()" id="continue-btn" disabled>CONTINUAR</button>
+            <button class="menu-btn" onclick="showCredits()">CRÉDITOS</button>
+        </div>
+    </div>
+
+    <!-- Seleção de Personagem -->
+    <div id="character-select">
+        <h2 class="char-select-title">Escolha Seu Personagem</h2>
+        <div class="character-grid">
+            <!-- NILO -->
+            <div class="character-card" onclick="selectCharacter('nilo')">
+                <img src="assets/nilo.png" class="char-portrait-img" alt="Nilo">
+                <div class="char-name">NILO</div>
+                <div class="char-role">Operador de Drones / Revolucionário</div>
+                <div class="char-description">
+                    28 anos. Entregador nato que usa drones para contrabando e revolução. 
+                    "O salário mínimo é a nova corrente."
+                </div>
+                <div class="char-abilities">
+                    <div class="ability">🔴 Enxame Vespa: Controle tático de drones</div>
+                    <div class="ability">🔴 Olhos da Colmeia: Visão 360°</div>
+                    <div class="ability">🔴 Grito de Revolta: Buff para aliados</div>
+                </div>
+            </div>
+
+            <!-- ZHEN LIU -->
+            <div class="character-card" onclick="selectCharacter('zhen')">
+                <img src="assets/zhen.png" class="char-portrait-img" alt="Zhen Liu">
+                <div class="char-name">ZHEN LIU</div>
+                <div class="char-role">Cozinheiro de Rua / Guerreiro</div>
+                <div class="char-description">
+                    33 anos. Artista culinário performático da Velha China. Testemunha da morte de Meiling.
+                    Transforma cozinha em arte marcial.
+                </div>
+                <div class="char-abilities">
+                    <div class="ability">⚫ Sindicato-Martelo: Onda de choque</div>
+                    <div class="ability">⚫ Sindicato-Foice: Corte devastador</div>
+                    <div class="ability">⚫ Buffs Culinários: Suporte tático</div>
+                </div>
+            </div>
+
+            <!-- CALÍOPE -->
+            <div class="character-card" onclick="selectCharacter('caliope')">
+                <img src="assets/caliope.png" class="char-portrait-img" alt="Calíope">
+                <div class="char-name">CALÍOPE / ORPHEUS</div>
+                <div class="char-role">DJ Neuropisíquica / Hacker</div>
+                <div class="char-description">
+                    35 anos. Revolucionária comunista. Família morta por corporações aos 9 anos.
+                    Música manipula mentes. A chama da revolução.
+                </div>
+                <div class="char-abilities">
+                    <div class="ability">💜 Overdrive Surge: Explodir eletrônicos</div>
+                    <div class="ability">💜 Batida Neural: Controle mental</div>
+                    <div class="ability">💜 Víbora de Neon: Assassinato furtivo</div>
+                </div>
+            </div>
+
+            <!-- ARTZ -->
+            <div class="character-card" onclick="selectCharacter('artz')">
+                <img src="assets/artz.png" class="char-portrait-img" alt="Artz">
+                <div class="char-name">ARTZ GEDERWÜNGEN</div>
+                <div class="char-role">Cientista / Übermensch</div>
+                <div class="char-description">
+                    80 anos (aparenta 30). Médico/biólogo alemão. Alcançou o Übermensch de Nietzsche.
+                    Super-força, super-sentidos, alquimista moderno.
+                </div>
+                <div class="char-abilities">
+                    <div class="ability">🧪 Stinger-Ignis: Corrosão ácida</div>
+                    <div class="ability">🧪 Stinger-Static: EMP orgânico</div>
+                    <div class="ability">🧪 Stinger-Phantasm: Alucinações</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jogo Principal -->
+    <div id="game-container">
+        <!-- HUD -->
+        <div class="game-hud">
+            <div class="hud-section">
+                <div class="hud-item">
+                    <span class="hud-label">Personagem</span>
+                    <span class="hud-value" id="char-name">---</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">Ato / Missão</span>
+                    <span class="hud-value" id="mission-name">---</span>
+                </div>
+            </div>
+            <div class="hud-section">
+                <div class="hud-item">
+                    <span class="hud-label">Moralidade</span>
+                    <div class="morality-bar">
+                        <div class="morality-fill" id="morality-fill"></div>
+                    </div>
+                    <small style="color: var(--cyan); font-size: 0.7em;">
+                        <span>HUMANO</span>
+                        <span style="float: right;">PRAGMÁTICO</span>
+                    </small>
+                </div>
+            </div>
+            <div class="hud-section">
+                <button class="btn-save" onclick="saveGame()" title="Salvar progresso">💾 SALVAR</button>
+            </div>
+        </div>
+
+        <!-- Área Principal -->
+        <div class="game-main">
+            <div class="game-scene" id="game-scene">
+                <!-- Conteúdo dinâmico -->
+            </div>
+
+            <div class="side-panel">
+                <div class="panel-section">
+                    <div class="panel-title">Status</div>
+                    <div class="stat-item">
+                        <span class="stat-label">HP:</span>
+                        <span class="stat-value" id="hp">100/100</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Reputação:</span>
+                        <span class="stat-value" id="reputation">Neutro</span>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <div class="panel-title">Objetivos</div>
+                    <div id="objectives-list">
+                        <div class="mission-objective">Explorar o Nexus destruído</div>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <div class="panel-title">Facções</div>
+                    <div class="stat-item">
+                        <span class="stat-label">Resistência:</span>
+                        <span class="stat-value" id="rep-nexus">Aliado</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Sinaloa:</span>
+                        <span class="stat-value" id="rep-sinaloa">Neutro</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Dragões de Jade:</span>
+                        <span class="stat-value" id="rep-dragons">Neutro</span>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn" onclick="saveGame()">SALVAR</button>
+                    <button class="btn" onclick="showMenu()">MENU</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+    <script>
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                    console.log('ServiceWorker registrado com sucesso: ', registration.scope);
+                }, function(err) {
+                    console.log('ServiceWorker falhou ao registrar: ', err);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
