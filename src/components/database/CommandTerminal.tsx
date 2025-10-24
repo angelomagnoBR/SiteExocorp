@@ -212,8 +212,8 @@ const CommandTerminal = ({ onCommand, onClose }: CommandTerminalProps) => {
       </div>
 
       {/* Security Alert Dialog */}
-      <Dialog open={showSecurityAlert} onOpenChange={setShowSecurityAlert}>
-        <DialogContent className="max-w-2xl border-destructive border-4 bg-destructive/10 backdrop-blur-md">
+      <Dialog open={showSecurityAlert}>
+        <DialogContent className="max-w-2xl border-destructive border-4 bg-destructive/10 backdrop-blur-md [&>button]:hidden" onPointerDownOutside={(e) => e.preventDefault()} onEscapeKeyDown={(e) => e.preventDefault()}>
           <div className="flex flex-col items-center justify-center space-y-6 p-8">
             <AlertTriangle className="h-24 w-24 text-destructive animate-pulse" />
             <div className="text-center space-y-4">
