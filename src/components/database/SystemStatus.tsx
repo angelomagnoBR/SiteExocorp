@@ -48,6 +48,29 @@ const SystemStatus = ({ onOpenFull }: SystemStatusProps) => {
     
     if (cleanInput === correctSequence) {
       // Sucesso!
+
+      // Adicione após a linha 52 (dentro do if de sucesso):
+const validateNumbers = () => {
+  const cleanInput = numbersInput.replace(/[^0-9]/g, '');
+  const correctSequence = '4815162342';
+  
+  console.log('🎯 Input limpo:', cleanInput);
+  console.log('🎯 Sequência correta:', correctSequence);
+  console.log('🎯 É igual?', cleanInput === correctSequence);
+  
+  if (cleanInput === correctSequence) {
+    console.log('✅ SUCESSO! Registrando NUMBERS...');
+    registrarPistaEncontrada('NUMBERS');
+    
+    // Verificar se realmente foi salvo
+    const saved = JSON.parse(localStorage.getItem('unlockedClues') || '[]');
+    console.log('📦 LocalStorage após registro:', saved);
+    
+    setIsSuccess(true);
+    // ... resto do código
+  }
+};
+
       registrarPistaEncontrada('NUMBERS');
       setIsSuccess(true);
       
