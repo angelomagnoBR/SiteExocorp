@@ -207,9 +207,10 @@ All colors MUST be HSL.
   z-index: 9999;
   pointer-events: none;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start; /* ← No topo */
+  justify-content: flex-end; /* ← À direita */
   background: rgba(0, 0, 0, 0.9);
+  padding: 2rem; /* ← Espaçamento das bordas */
 }
 
 .matrix-glitch-content {
@@ -218,16 +219,16 @@ All colors MUST be HSL.
 }
 
 .matrix-glitch-text {
-  font-size: 4rem;
+  font-size: 2rem;
   font-weight: bold;
   color: #00ff00;
-  text-shadow: 0 0 20px #00ff00;
+  text-shadow: 0 0 10px #00ff00;
 }
 
 .matrix-glitch-time {
   font-size: 2rem;
   color: #ff0000;
-  text-shadow: 0 0 15px #ff0000;
+  text-shadow: 0 0 10px #ff0000;
   margin-top: 1rem;
 }
 
