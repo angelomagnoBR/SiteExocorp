@@ -186,9 +186,9 @@ const validateNumbers = () => {
 
   return (
     <>
-      <div className="p-4 neon-border-magenta bg-secondary/5 rounded-sm">
+      <div className="p-2 sm:p-3 md:p-4 neon-border-magenta bg-secondary/5 rounded-sm">
         <div className="flex items-center justify-between mb-2">
-          <p className="text-[10px] text-secondary terminal-text tracking-widest">
+          <p className="text-[8px] sm:text-[10px] text-secondary terminal-text tracking-widest"
             STATUS DO SISTEMA
           </p>
           <Button
@@ -201,7 +201,7 @@ const validateNumbers = () => {
           </Button>
         </div>
         
-        <div className="space-y-1 text-[10px] text-muted-foreground terminal-text">
+        <div className="space-y-1 text-[8px] sm:text-[10px] text-muted-foreground terminal-text">
           <div className="flex justify-between">
             <span>CONEXÃO:</span>
             <span className="text-terminal-green animate-pulse">ATIVA</span>
@@ -269,7 +269,7 @@ const validateNumbers = () => {
 
       {/* Diálogo da Anomalia com Campo de Input */}
       <Dialog open={showAnomalyDialog} onOpenChange={setShowAnomalyDialog}>
-        <DialogContent className={`max-w-2xl bg-background/95 backdrop-blur-sm ${isSuccess ? 'border-terminal-green' : 'border-destructive'} ${isError ? 'animate-shake' : ''}`}>
+        <DialogContent className={`w-[95vw] sm:w-full max-w-2xl bg-background/95 backdrop-blur-sm ${isSuccess ? 'border-terminal-green' : 'border-destructive'} ${isError ? 'animate-shake' : ''}`}>
           <DialogHeader>
             <DialogTitle className={`${isSuccess ? 'text-terminal-green' : 'text-destructive'} terminal-text tracking-widest text-center text-xl flex items-center justify-center gap-2`}>
               {isSuccess ? (
@@ -286,7 +286,7 @@ const validateNumbers = () => {
             </DialogTitle>
           </DialogHeader>
           
-          <div className="p-6 space-y-6">
+         <div className="p-3 sm:p-4 md:p-6 space-y-4 sm:space-y-6">
             {!isSuccess ? (
               /* MODAL DE INPUT - Antes de acertar */
               <div className="neon-border bg-card/30 p-6 space-y-4">
@@ -302,15 +302,15 @@ const validateNumbers = () => {
                     Entrada de validação requerida para resolver instabilidade:
                   </p>
                   
-                  <Input
-                    type="text"
-                    value={numbersInput}
-                    onChange={(e) => setNumbersInput(e.target.value)}
-                    onKeyPress={handleKeyPress}
-                    placeholder="???"
-                    className="text-center text-2xl tracking-widest terminal-text bg-input border-primary/50 focus:border-primary"
-                    autoFocus
-                  />
+              <Input
+  type="text"
+  value={numbersInput}
+  onChange={(e) => setNumbersInput(e.target.value)}
+  onKeyPress={handleKeyPress}
+  placeholder="???"
+  className="text-center text-xl sm:text-2xl tracking-widest terminal-text bg-input border-primary/50 focus:border-primary"
+  autoFocus
+/>
                 </div>
 
                 {attempts > 0 && (
