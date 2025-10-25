@@ -1787,8 +1787,7 @@ ALERTA CRÍTICO:
                   <div className="flex items-start gap-2 bg-yellow-900/20 border border-yellow-500/30 p-3 rounded">
                     <AlertTriangle className="h-4 w-4 text-yellow-400 flex-shrink-0 mt-0.5" />
                     <p className="text-yellow-400 text-xs terminal-text">
-                      <strong>DICA:</strong> "V de Vingança" - lembre-se do filme. 
-                      A palavra está em inglês e representa o conceito de vingança política.
+                      <strong>DICA:</strong> "V de Vingança" - So queria uma coisa.
                     </p>
                   </div>
 
