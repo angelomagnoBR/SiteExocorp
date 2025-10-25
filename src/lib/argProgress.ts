@@ -1,4 +1,4 @@
-/ Sistema de Progressão do ARG
+// Sistema de Progressão do ARG
 // Controla o desbloqueio gradual de conteúdo baseado em ações do usuário
 
 type PistaARG = 
