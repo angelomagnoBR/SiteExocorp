@@ -852,11 +852,7 @@ Se você quer se juntar à luta,
 se você quer fazer parte da MUDANÇA,
 se você está pronto para LEMBRAR...
 
-Vá para o TERMINAL.
-Digite a palavra que V usou para destruir o Parlamento.
-Digite a palavra que representa a VINGANÇA contra a tirania.
-
-Digite e junte-se a nós.'
+VGVtIGFsZ28gYXF1aQ==
 
 ═══════════════════════════════════════════════════════════════════
 
