@@ -200,3 +200,525 @@ All colors MUST be HSL.
     animation: loading-bar 3s ease-in-out;
   }
 }
+/* ========================================
+   ARG V6 - Estilos Adicionais
+   ======================================== */
+
+/* ========================================
+   1. MATRIX GLITCH OVERLAY
+   ======================================== */
+.matrix-glitch-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.matrix-glitch-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+}
+
+.matrix-rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 65, 0.03) 2px,
+    rgba(0, 255, 65, 0.03) 4px
+  );
+  animation: matrix-rain-scroll 2s linear infinite;
+  opacity: 0.3;
+}
+
+@keyframes matrix-rain-scroll {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(20px); }
+}
+
+.matrix-text-wrapper {
+  position: relative;
+  font-size: 4rem;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.1em;
+}
+
+.matrix-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.matrix-text.main-text {
+  color: #00ff41;
+  text-shadow: 
+    0 0 10px #00ff41,
+    0 0 20px #00ff41,
+    0 0 30px #00ff41,
+    0 0 40px #00ff41;
+  z-index: 3;
+  font-weight: 900;
+}
+
+.matrix-text.glitch-red {
+  color: #ff0040;
+  z-index: 1;
+  opacity: 0.4;
+  mix-blend-mode: screen;
+}
+
+.matrix-text.glitch-blue {
+  color: #00fff9;
+  z-index: 2;
+  opacity: 0.4;
+  mix-blend-mode: screen;
+}
+
+.scan-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 255, 65, 0.1) 0%,
+    rgba(0, 255, 65, 0.3) 50%,
+    rgba(0, 255, 65, 0.1) 100%
+  );
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .matrix-text-wrapper {
+    font-size: 2rem;
+  }
+}
+
+/* ========================================
+   2. NUMBERS MODAL
+   ======================================== */
+.numbers-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 9998;
+}
+
+.numbers-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 600px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 2px solid #00fff9;
+  border-radius: 12px;
+  box-shadow: 
+    0 0 30px rgba(0, 255, 249, 0.3),
+    0 0 60px rgba(0, 255, 249, 0.1),
+    inset 0 0 50px rgba(0, 255, 249, 0.05);
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.numbers-modal.error-shake {
+  animation: error-shake 0.5s ease-in-out;
+}
+
+@keyframes error-shake {
+  0%, 100% { transform: translate(-50%, -50%); }
+  10%, 30%, 50%, 70%, 90% { transform: translate(-52%, -50%); }
+  20%, 40%, 60%, 80% { transform: translate(-48%, -50%); }
+}
+
+.numbers-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background: linear-gradient(90deg, #0f3460 0%, #16213e 100%);
+  border-bottom: 2px solid #00fff9;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.header-title h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #00fff9;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.warning-icon {
+  color: #ffd700;
+  animation: pulse-warning 2s ease-in-out infinite;
+}
+
+@keyframes pulse-warning {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.1); }
+}
+
+.close-button {
+  background: transparent;
+  border: none;
+  color: #ff6b6b;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.close-button:hover {
+  background: rgba(255, 107, 107, 0.1);
+  transform: rotate(90deg);
+}
+
+.close-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.numbers-modal-content {
+  padding: 2rem;
+}
+
+.warning-text {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.warning-main {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ff6b6b;
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.warning-sub {
+  font-size: 1rem;
+  color: #a8b2d1;
+  margin: 0;
+}
+
+.input-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.input-wrapper label {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: #00fff9;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-family: 'Courier New', monospace;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid #00fff9;
+  border-radius: 8px;
+  color: #00fff9;
+  text-align: center;
+  letter-spacing: 0.3em;
+  transition: all 0.3s;
+}
+
+.input-wrapper input:focus {
+  outline: none;
+  border-color: #00ff41;
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+}
+
+.input-wrapper input.input-error {
+  border-color: #ff6b6b;
+  animation: input-error-pulse 0.5s ease-in-out;
+}
+
+@keyframes input-error-pulse {
+  0%, 100% { background: rgba(0, 0, 0, 0.5); }
+  50% { background: rgba(255, 107, 107, 0.2); }
+}
+
+.input-wrapper input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background: rgba(255, 107, 107, 0.1);
+  border: 1px solid #ff6b6b;
+  border-radius: 6px;
+  color: #ff6b6b;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.modal-actions button {
+  flex: 1;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #a8b2d1;
+  border: 1px solid #a8b2d1;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #00fff9 0%, #00ff41 100%);
+  color: #0f3460;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(0, 255, 249, 0.3);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 255, 249, 0.4);
+}
+
+.btn-primary:disabled,
+.btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #0f3460;
+  border-top-color: transparent;
+  border-radius: 50%;
+}
+
+.hints {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(0, 255, 249, 0.05);
+  border: 1px dashed #00fff9;
+  border-radius: 6px;
+}
+
+.hint-text {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #a8b2d1;
+  text-align: center;
+}
+
+.modal-glitch-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  border: 1px solid #00fff9;
+  border-radius: 12px;
+  animation: modal-glitch 3s ease-in-out infinite;
+}
+
+@keyframes modal-glitch {
+  0%, 90%, 100% { opacity: 0; }
+  91%, 93%, 95%, 97% { opacity: 1; box-shadow: 0 0 10px #00fff9; }
+  92%, 94%, 96%, 98% { opacity: 0; }
+}
+
+/* ========================================
+   3. SUCCESS OVERLAY
+   ======================================== */
+.success-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.success-message {
+  text-align: center;
+  padding: 3rem;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 3px solid #00ff41;
+  border-radius: 12px;
+  box-shadow: 
+    0 0 40px rgba(0, 255, 65, 0.5),
+    0 0 80px rgba(0, 255, 65, 0.3);
+  animation: successPulse 1s ease-in-out;
+}
+
+@keyframes successPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.success-message h2 {
+  margin: 0 0 1rem 0;
+  font-size: 2.5rem;
+  color: #00ff41;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 20px #00ff41;
+}
+
+.success-message p {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+  color: #a8b2d1;
+}
+
+.success-hint {
+  margin-top: 1.5rem !important;
+  font-size: 1rem !important;
+  color: #00fff9 !important;
+  font-style: italic;
+}
+
+/* ========================================
+   4. ANOMALIA BUTTON
+   ======================================== */
+.anomalia-button {
+  margin-top: 2rem;
+  padding: 1.25rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+  color: #fff;
+  border: 2px solid #ff6b6b;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  animation: anomalia-glow 2s ease-in-out infinite;
+}
+
+.anomalia-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(255, 107, 107, 0.6);
+}
+
+@keyframes anomalia-glow {
+  0%, 100% { box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4); }
+  50% { box-shadow: 0 4px 30px rgba(255, 107, 107, 0.8); }
+}
+
+@media (max-width: 768px) {
+  .numbers-modal {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  .numbers-modal-header {
+    padding: 1rem;
+  }
+
+  .header-title h2 {
+    font-size: 1.2rem;
+  }
+
+  .numbers-modal-content {
+    padding: 1.5rem;
+  }
+
+  .warning-main {
+    font-size: 1.2rem;
+  }
+
+  .input-wrapper input {
+    font-size: 1.2rem;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+
+  .success-message h2 {
+    font-size: 1.8rem;
+  }
+
+  .anomalia-button {
+    font-size: 0.9rem;
+    padding: 1rem 1.5rem;
+  }
+}
