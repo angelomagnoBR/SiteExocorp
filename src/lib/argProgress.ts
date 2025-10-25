@@ -1,134 +1,115 @@
-// Sistema de tracking do ARG (Alternate Reality Game)
-// Gerencia o progresso das pistas e garante progressão linear
+/ Sistema de Progressão do ARG
+// Controla o desbloqueio gradual de conteúdo baseado em ações do usuário
 
-export type PistaID = 
-  | 'INICIO'      // Pista 1 - Matrix (Coelho) - Sempre visível
-  | 'COELHO'      // Pista 2 - Matrix (Coelho encontrado)
-  | 'PILULA'      // Pista 3 - Matrix (Pílulas)
-  | 'NUMBERS'     // Pista 4 - LOST (4-8-15-16-23-42)
-  | 'VENDETTA'    // Pista 5 - V de Vingança
-  | 'GAME';       // Jogo desbloqueado
+type PistaARG = 
+  | 'INICIO'      // Estado inicial após primeiro login
+  | 'COELHO'      // Após comando "coelho branco" no terminal
+  | 'PILULA'      // Após clicar na pílula vermelha
+  | 'NUMBERS'     // Após digitar números corretos no modal
+  | 'VENDETTA'    // Após descobrir VENDETTA no dossiê Bobby
+  | 'GAME';       // Acesso ao jogo final liberado
 
-export interface ARGProgress {
-  pistasEncontradas: PistaID[];
-  pistaAtual: PistaID;
-  jogoDesbloqueado: boolean;
-  timestamp: number;
+interface ProgressoARG {
+  pistasEncontradas: PistaARG[];
+  ultimaPista: PistaARG;
+  numbersDigitados: boolean; // Novo: controla se números foram validados
+  timestampInicio?: number;
 }
 
 const STORAGE_KEY = 'exocorp_arg_progress';
 
-// Ordem das pistas (progressão linear)
-const ORDEM_PISTAS: PistaID[] = [
-  'INICIO',
-  'COELHO',
-  'PILULA',
-  'NUMBERS',
-  'VENDETTA',
-  'GAME'
-];
+// Inicializa o progresso do ARG
+export function inicializarProgresso(): void {
+  const progressoExistente = obterProgresso();
+  
+  if (!progressoExistente.pistasEncontradas.length) {
+    const novoProgresso: ProgressoARG = {
+      pistasEncontradas: ['INICIO'],
+      ultimaPista: 'INICIO',
+      numbersDigitados: false,
+      timestampInicio: Date.now()
+    };
+    salvarProgresso(novoProgresso);
+  }
+}
 
-// Inicializar progresso
-const inicializarProgresso = (): ARGProgress => ({
-  pistasEncontradas: ['INICIO'], // Primeira pista sempre disponível
-  pistaAtual: 'INICIO',
-  jogoDesbloqueado: false,
-  timestamp: Date.now()
-});
+// Registra que uma pista foi encontrada
+export function registrarPistaEncontrada(pista: PistaARG): void {
+  const progresso = obterProgresso();
+  
+  if (!progresso.pistasEncontradas.includes(pista)) {
+    progresso.pistasEncontradas.push(pista);
+    progresso.ultimaPista = pista;
+    salvarProgresso(progresso);
+  }
+}
 
-// Carregar progresso do localStorage
-export const carregarProgresso = (): ARGProgress => {
+// Registra que os números foram digitados corretamente
+export function registrarNumbersValidados(): void {
+  const progresso = obterProgresso();
+  progresso.numbersDigitados = true;
+  registrarPistaEncontrada('NUMBERS');
+  salvarProgresso(progresso);
+}
+
+// Verifica se uma pista específica foi encontrada
+export function pistaFoiEncontrada(pista: PistaARG): boolean {
+  const progresso = obterProgresso();
+  return progresso.pistasEncontradas.includes(pista);
+}
+
+// Verifica se os números foram validados
+export function numbersForamValidados(): boolean {
+  const progresso = obterProgresso();
+  return progresso.numbersDigitados === true;
+}
+
+// Obtém o progresso atual
+export function obterProgresso(): ProgressoARG {
   try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      const progress = JSON.parse(saved) as ARGProgress;
-      // Validar estrutura
-      if (progress.pistasEncontradas && Array.isArray(progress.pistasEncontradas)) {
-        return progress;
-      }
+    const dados = localStorage.getItem(STORAGE_KEY);
+    if (dados) {
+      return JSON.parse(dados);
     }
   } catch (error) {
-    console.error('Erro ao carregar progresso do ARG:', error);
+    console.error('Erro ao ler progresso:', error);
   }
   
-  return inicializarProgresso();
-};
+  return {
+    pistasEncontradas: [],
+    ultimaPista: 'INICIO',
+    numbersDigitados: false
+  };
+}
 
-// Salvar progresso no localStorage
-export const salvarProgresso = (progresso: ARGProgress): void => {
+// Salva o progresso
+function salvarProgresso(progresso: ProgressoARG): void {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(progresso));
   } catch (error) {
-    console.error('Erro ao salvar progresso do ARG:', error);
+    console.error('Erro ao salvar progresso:', error);
   }
-};
+}
 
-// Registrar que uma pista foi encontrada
-export const registrarPistaEncontrada = (pista: PistaID): ARGProgress => {
-  const progresso = carregarProgresso();
-  
-  // Verificar se já foi encontrada
-  if (progresso.pistasEncontradas.includes(pista)) {
-    return progresso;
+// Reseta todo o progresso (para quando digitar números errados)
+export function resetarProgresso(): void {
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+    // Recarrega a página para estado inicial
+    window.location.href = '/';
+  } catch (error) {
+    console.error('Erro ao resetar progresso:', error);
   }
-  
-  // Adicionar pista encontrada
-  progresso.pistasEncontradas.push(pista);
-  progresso.timestamp = Date.now();
-  
-  // Determinar próxima pista
-  const indexAtual = ORDEM_PISTAS.indexOf(pista);
-  if (indexAtual < ORDEM_PISTAS.length - 1) {
-    progresso.pistaAtual = ORDEM_PISTAS[indexAtual + 1];
-  }
-  
-  // Verificar se jogo foi desbloqueado
-  if (pista === 'VENDETTA') {
-    progresso.jogoDesbloqueado = true;
-  }
-  
-  salvarProgresso(progresso);
-  return progresso;
-};
+}
 
-// Verificar se uma pista pode ser exibida
-export const podeMostrarPista = (pista: PistaID): boolean => {
-  const progresso = carregarProgresso();
-  const indexPista = ORDEM_PISTAS.indexOf(pista);
-  
-  // Primeira pista sempre visível
-  if (indexPista === 0) {
-    return true;
-  }
-  
-  // Outras pistas só aparecem se a anterior foi encontrada
-  const pistaAnterior = ORDEM_PISTAS[indexPista - 1];
-  return progresso.pistasEncontradas.includes(pistaAnterior);
-};
+// Verifica se o jogo está liberado
+export function jogoEstaLiberado(): boolean {
+  return pistaFoiEncontrada('GAME');
+}
 
-// Verificar se jogo está desbloqueado
-export const isJogoDesbloqueado = (): boolean => {
-  const progresso = carregarProgresso();
-  return progresso.jogoDesbloqueado;
-};
-
-// Resetar progresso (para debug/teste)
-export const resetarProgresso = (): void => {
-  localStorage.removeItem(STORAGE_KEY);
-};
-
-// Obter status atual do ARG
-export const getStatusARG = (): {
-  pistasEncontradas: number;
-  totalPistas: number;
-  pistaAtual: PistaID;
-  jogoDesbloqueado: boolean;
-} => {
-  const progresso = carregarProgresso();
-  return {
-    pistasEncontradas: progresso.pistasEncontradas.length,
-    totalPistas: ORDEM_PISTAS.length,
-    pistaAtual: progresso.pistaAtual,
-    jogoDesbloqueado: progresso.jogoDesbloqueado
-  };
-};
+// Debug: mostra progresso atual no console
+export function debugProgresso(): void {
+  console.log('=== PROGRESSO ARG ===');
+  console.log(obterProgresso());
+  console.log('====================');
+}
