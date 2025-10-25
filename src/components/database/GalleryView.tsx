@@ -9,16 +9,27 @@ const GalleryView = () => {
   const [showWhiteRabbit, setShowWhiteRabbit] = useState(false);
   const [showRabbitDialog, setShowRabbitDialog] = useState(false);
 
-  useEffect(() => {
-    // Verificar se deve mostrar o coelho branco (PISTA 2)
-    // Agora verifica se comando LIA foi digitado
+useEffect(() => {
+  // Verificar se deve mostrar o coelho branco (após comando "coelho branco")
+  const checkRabbitVisibility = () => {
     const argProgress = localStorage.getItem('exocorp_arg_progress');
     if (argProgress) {
       const progress = JSON.parse(argProgress);
-      // Coelho aparece se LIA foi digitada (COELHO pista desbloqueada)
       setShowWhiteRabbit(progress.pistasEncontradas?.includes('COELHO'));
     }
-  }, []);
+  };
+  
+  // Verificar no carregamento
+  checkRabbitVisibility();
+  
+  // Ouvir mudanças no progresso do ARG
+  window.addEventListener('argProgressUpdated', checkRabbitVisibility);
+  
+  return () => {
+    window.removeEventListener('argProgressUpdated', checkRabbitVisibility);
+  };
+}, []);
+
 
   const handleRabbitClick = () => {
     // Registrar que a próxima pista foi desbloqueada (PILULA)
