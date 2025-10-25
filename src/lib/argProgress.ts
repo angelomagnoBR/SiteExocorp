@@ -13,7 +13,6 @@ export interface ARGProgress {
   pistasEncontradas: PistaID[];
   pistaAtual: PistaID;
   jogoDesbloqueado: boolean;
-  numbersDigitados: boolean; // ✨ NOVO - V6: controla validação dos números
   timestamp: number;
 }
 
@@ -34,7 +33,6 @@ const inicializarProgresso = (): ARGProgress => ({
   pistasEncontradas: ['INICIO'], // Primeira pista sempre disponível
   pistaAtual: 'INICIO',
   jogoDesbloqueado: false,
-  numbersDigitados: false, // ✨ NOVO - V6
   timestamp: Date.now()
 });
 
@@ -46,10 +44,6 @@ export const carregarProgresso = (): ARGProgress => {
       const progress = JSON.parse(saved) as ARGProgress;
       // Validar estrutura
       if (progress.pistasEncontradas && Array.isArray(progress.pistasEncontradas)) {
-        // Garantir retrocompatibilidade - adicionar numbersDigitados se não existir
-        if (progress.numbersDigitados === undefined) {
-          progress.numbersDigitados = progress.pistasEncontradas.includes('NUMBERS');
-        }
         return progress;
       }
     }
@@ -97,20 +91,6 @@ export const registrarPistaEncontrada = (pista: PistaID): ARGProgress => {
   return progresso;
 };
 
-// ✨ NOVO - V6: Registrar que os números foram validados corretamente
-export const registrarNumbersValidados = (): void => {
-  const progresso = carregarProgresso();
-  progresso.numbersDigitados = true;
-  registrarPistaEncontrada('NUMBERS');
-  salvarProgresso(progresso);
-};
-
-// ✨ NOVO - V6: Verificar se os números foram validados
-export const numbersForamValidados = (): boolean => {
-  const progresso = carregarProgresso();
-  return progresso.numbersDigitados === true;
-};
-
 // Verificar se uma pista pode ser exibida
 export const podeMostrarPista = (pista: PistaID): boolean => {
   const progresso = carregarProgresso();
@@ -126,12 +106,6 @@ export const podeMostrarPista = (pista: PistaID): boolean => {
   return progresso.pistasEncontradas.includes(pistaAnterior);
 };
 
-// ✨ NOVO - V6: Alias para compatibilidade com código V6
-export const pistaFoiEncontrada = (pista: PistaID): boolean => {
-  const progresso = carregarProgresso();
-  return progresso.pistasEncontradas.includes(pista);
-};
-
 // Verificar se jogo está desbloqueado
 export const isJogoDesbloqueado = (): boolean => {
   const progresso = carregarProgresso();
@@ -141,10 +115,6 @@ export const isJogoDesbloqueado = (): boolean => {
 // Resetar progresso (para debug/teste)
 export const resetarProgresso = (): void => {
   localStorage.removeItem(STORAGE_KEY);
-  // ✨ NOVO - V6: Recarrega a página após reset
-  if (typeof window !== 'undefined') {
-    window.location.href = '/';
-  }
 };
 
 // Obter status atual do ARG
