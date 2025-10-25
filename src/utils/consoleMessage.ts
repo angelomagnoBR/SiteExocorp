@@ -37,7 +37,7 @@ export const initConsoleMessage = () => {
   );
 
   console.log(
-    '%cVocê poderia trapacear agora... mas qual é a graça? 🤔',
+    '%cVocê poderia olhar agora... mas qual é a graça? 🤔',
     'color: #ffffff; font-size: 14px;'
   );
 
@@ -58,7 +58,7 @@ export const initConsoleMessage = () => {
   );
 
   console.log(
-    '%cAs pistas são justas e possíveis de resolver.\nPrometo que vale a pena jogar sem trapacear! 😊',
+    '%cAs pistas são justas e possíveis de resolver.\nPrometo que vale a pena jogar sem olhar em! 😊',
     'color: #aaaaaa; font-size: 13px; line-height: 1.5;'
   );
 
