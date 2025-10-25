@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { ArrowLeft, AlertTriangle } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ArrowLeft, AlertTriangle, Terminal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface Target {
@@ -2139,6 +2139,14 @@ Aguardando decisão para alocação de recursos.
 const DossierView = () => {
   const [selectedTarget, setSelectedTarget] = useState<Target | null>(null);
 
+  const [showSecretMessage, setShowSecretMessage] = useState(false);
+  useEffect(() => {
+    const unlockedClues = JSON.parse(localStorage.getItem('unlockedClues') || '[]');
+    if (unlockedClues.includes('NUMBERS')) {
+      setShowSecretMessage(true);
+    }
+  }, [selectedTarget]);
+  
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'ATIVO': return 'text-destructive';
@@ -2160,6 +2168,7 @@ const DossierView = () => {
   };
 
   if (selectedTarget) {
+     const isBobbyDossier = selectedTarget.id === '001-MENTOR-NY';
     return (
       <div className="p-8 h-full overflow-auto">
         <Button
@@ -2202,6 +2211,64 @@ const DossierView = () => {
             <pre className="text-sm text-foreground terminal-text whitespace-pre-wrap leading-relaxed">
               {selectedTarget.dossier}
             </pre>
+                      {/* Content */}
+          <div className="bg-input/50 p-8 rounded-sm border border-primary/20">
+            <pre className="text-sm text-foreground terminal-text whitespace-pre-wrap leading-relaxed">
+              {selectedTarget.dossier}
+            </pre>
+
+        
+            {isBobbyDossier && showSecretMessage && (
+              <div className="mt-8 pt-6 border-t-4 border-terminal-green animate-pulse-slow">
+                <div className="bg-terminal-green/10 border-2 border-terminal-green p-6 rounded space-y-4">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Terminal className="h-6 w-6 text-terminal-green animate-pulse" />
+                    <h3 className="text-terminal-green font-bold text-lg terminal-text tracking-wider">
+                      &gt;&gt; MENSAGEM OCULTA DECODIFICADA
+                    </h3>
+                  </div>
+
+                  <div className="bg-background/80 p-5 rounded border border-terminal-green/50 space-y-3">
+                    <p className="text-terminal-green font-bold terminal-text text-base leading-relaxed">
+                      Vá para o TERMINAL.
+                    </p>
+                    <p className="text-foreground terminal-text text-sm leading-relaxed">
+                      Digite a palavra que V usou para destruir o Parlamento.
+                    </p>
+                    <p className="text-foreground terminal-text text-sm leading-relaxed">
+                      Digite a palavra que representa a VINGANÇA contra a tirania.
+                    </p>
+                    <p className="text-destructive font-bold terminal-text text-base leading-relaxed mt-4">
+                      Digite e junte-se a nós.
+                    </p>
+                  </div>
+
+                  <div className="flex items-start gap-2 bg-yellow-900/20 border border-yellow-500/30 p-3 rounded">
+                    <AlertTriangle className="h-4 w-4 text-yellow-400 flex-shrink-0 mt-0.5" />
+                    <p className="text-yellow-400 text-xs terminal-text">
+                      <strong>DICA:</strong> "V de Vingança" - lembre-se do filme. 
+                      A palavra está em inglês e representa o conceito de vingança política.
+                    </p>
+                  </div>
+
+                  <div className="text-center pt-4 border-t border-terminal-green/30">
+                    <p className="text-terminal-green text-xs terminal-text italic">
+                      "Sob esta máscara há mais do que carne. Sob esta máscara há uma ideia."
+                    </p>
+                    <p className="text-muted-foreground text-xs terminal-text mt-1">
+                      - V, V de Vingança
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+      
+
+          </div>
+
+          {/* Footer */}
+          <div className="flex justify-between items-center pt-6 border-t border-primary/20 mt-6">
+
           </div>
 
           {/* Footer */}
