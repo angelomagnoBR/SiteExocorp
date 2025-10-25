@@ -4,7 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
-import Database from "./components/Database";
+import Database from "./pages/Database";
 import Game from "./pages/Game";
 import NotFound from "./pages/NotFound";
 
@@ -29,4 +29,3 @@ const App = () => (
 );
 
 export default App;
-
