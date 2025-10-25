@@ -352,8 +352,7 @@ const SystemStatus = ({ onOpenFull }: SystemStatusProps) => {
                       <p className="text-yellow-400 text-sm flex items-start gap-2 terminal-text">
                         <AlertTriangle className="h-4 w-4 flex-shrink-0 mt-0.5" />
                         <span>
-                          <strong>DICA:</strong> Acesse o dossiê de <strong>Bobby Chen</strong> através 
-                          do menu de dossiês. Pode haver informações adicionais aguardando.
+                          <strong>DICA:</strong> Pode haver informações adicionais aguardando.
                         </span>
                       </p>
                     </div>
