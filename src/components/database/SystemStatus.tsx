@@ -188,7 +188,10 @@ const validateNumbers = () => {
     <>
       <div className="p-2 sm:p-3 md:p-4 neon-border-magenta bg-secondary/5 rounded-sm">
         <div className="flex items-center justify-between mb-2">
-          <p className="text-[8px] sm:text-[10px] text-secondary terminal-text tracking-widest"
+       <p className="text-[8px] sm:text-[10px] text-secondary terminal-text tracking-widest">
+  STATUS DO SISTEMA
+</p>
+
             STATUS DO SISTEMA
           </p>
           <Button
