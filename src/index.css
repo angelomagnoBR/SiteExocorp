@@ -391,3 +391,56 @@ opacity: 0.4;
   from { opacity: 0; transform: scale(0.9); }
   to { opacity: 1; transform: scale(1); }
 }
+
+/* Prevenir scroll horizontal */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Garantir que pre/code quebrem linha em mobile */
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Terminal responsivo */
+.terminal-text {
+  font-size: 10px;
+}
+
+@media (min-width: 640px) {
+  .terminal-text {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  .terminal-text {
+    font-size: 14px;
+  }
+}
+
+/* Scrollbar customizada */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 0, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 0, 0.5);
+}
