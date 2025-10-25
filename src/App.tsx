@@ -1,3 +1,7 @@
+import { useEffect } from 'react'; // Se já tiver, não precisa adicionar
+import { initConsoleMessage, detectDevTools } from './utils/consoleMessage';
+
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
