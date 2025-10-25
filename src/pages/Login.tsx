@@ -215,8 +215,7 @@ const Login = () => {
                     
                     <div className="bg-input/50 p-4 rounded my-4">
                       <p className="text-center text-2xl text-primary terminal-text tracking-widest neon-glow font-bold">
-                        Alguns numeros muito famosos te daram o acesso
-                        Eles já foram um grande misterio e também a sorte grande!!
+                        "Alguns números muito famosos te darão o acesso. Eles já foram um grande mistério e também a sorte grande!"
                       </p>
                     </div>
                     
