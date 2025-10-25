@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Lock, AlertTriangle, Target, Shield, Skull, User, Users, Zap, Radio, MapPin, Power, Dna, Bell, MapPinned } from 'lucide-react';
+import { Lock, AlertTriangle, Target, Shield, Skull, User, Users, Zap, Radio, MapPin, Power, Dna, Bell, MapPinned, Terminal } from 'lucide-react';
 
 type ReportType = 'nexus' | 'lia' | 'neia campos' | 'apex' | 'amanda backer' | 'bobby' | 'javier montoya' | 'rocco' | 'b42b424' | '4l1550n' | '24f43l' | '4l3x4nd23' | 'v1ct02' | 'c4b3ça' | 'x4l3h';
 
 const NexusView = () => {
   const [activeReport, setActiveReport] = useState<ReportType>('nexus');
   const location = useLocation();
+  const [showSecretMessage, setShowSecretMessage] = useState(false);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -15,6 +16,13 @@ const NexusView = () => {
       setActiveReport(report);
     }
   }, [location.search]);
+  
+    useEffect(() => {
+    const unlockedClues = JSON.parse(localStorage.getItem('unlockedClues') || '[]');
+    if (unlockedClues.includes('NUMBERS')) {
+      setShowSecretMessage(true);
+    }
+  }, [activeReport]);
 
   const nexusContent = `
 ══════════════════════════════════════════════════════════
@@ -1749,6 +1757,53 @@ ALERTA CRÍTICO:
             <pre className="text-xs text-foreground terminal-text whitespace-pre-wrap leading-relaxed">
               {currentReport.content}
             </pre>
+
+            {/* MENSAGEM SECRETA DO BOBBY - SÓ APARECE APÓS ACERTAR OS NÚMEROS */}
+            {activeReport === 'bobby' && showSecretMessage && (
+              <div className="mt-8 pt-6 border-t-4 border-terminal-green animate-pulse-slow">
+                <div className="bg-terminal-green/10 border-2 border-terminal-green p-6 rounded space-y-4">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Terminal className="h-6 w-6 text-terminal-green animate-pulse" />
+                    <h3 className="text-terminal-green font-bold text-lg terminal-text tracking-wider">
+                      &gt;&gt; MENSAGEM OCULTA DECODIFICADA
+                    </h3>
+                  </div>
+
+                  <div className="bg-background/80 p-5 rounded border border-terminal-green/50 space-y-3">
+                    <p className="text-terminal-green font-bold terminal-text text-base leading-relaxed">
+                      Vá para o TERMINAL.
+                    </p>
+                    <p className="text-foreground terminal-text text-sm leading-relaxed">
+                      Digite a palavra que V usou para destruir o Parlamento.
+                    </p>
+                    <p className="text-foreground terminal-text text-sm leading-relaxed">
+                      Digite a palavra que representa a VINGANÇA contra a tirania.
+                    </p>
+                    <p className="text-destructive font-bold terminal-text text-base leading-relaxed mt-4">
+                      Digite e junte-se a nós.
+                    </p>
+                  </div>
+
+                  <div className="flex items-start gap-2 bg-yellow-900/20 border border-yellow-500/30 p-3 rounded">
+                    <AlertTriangle className="h-4 w-4 text-yellow-400 flex-shrink-0 mt-0.5" />
+                    <p className="text-yellow-400 text-xs terminal-text">
+                      <strong>DICA:</strong> "V de Vingança" - lembre-se do filme. 
+                      A palavra está em inglês e representa o conceito de vingança política.
+                    </p>
+                  </div>
+
+                  <div className="text-center pt-4 border-t border-terminal-green/30">
+                    <p className="text-terminal-green text-xs terminal-text italic">
+                      "Sob esta máscara há mais do que carne. Sob esta máscara há uma ideia."
+                    </p>
+                    <p className="text-muted-foreground text-xs terminal-text mt-1">
+                      - V, V de Vingança
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
           </div>
 
           {/* Footer warning */}
