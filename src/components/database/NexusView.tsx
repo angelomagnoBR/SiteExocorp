@@ -17,12 +17,21 @@ const NexusView = () => {
     }
   }, [location.search]);
   
-    useEffect(() => {
-    const unlockedClues = JSON.parse(localStorage.getItem('unlockedClues') || '[]');
-    if (unlockedClues.includes('NUMBERS')) {
-      setShowSecretMessage(true);
+useEffect(() => {
+  try {
+    const progressoStr = localStorage.getItem('exocorp_arg_progress');
+    if (progressoStr) {
+      const progresso = JSON.parse(progressoStr);
+      if (progresso.pistasEncontradas && progresso.pistasEncontradas.includes('NUMBERS')) {
+        setShowSecretMessage(true);
+        console.log('✅ NexusView - Mensagem secreta ativada!');
+      }
     }
-  }, [activeReport]);
+  } catch (error) {
+    console.error('❌ Erro ao verificar progresso:', error);
+  }
+}, [activeReport]);
+
 
   const nexusContent = `
 ══════════════════════════════════════════════════════════
