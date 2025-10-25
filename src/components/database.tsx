@@ -1,12 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Terminal, Database as DatabaseIcon, FileText, Users, Lock } from 'lucide-react';
 import EmailView from './EmailView';
-import NexusView from './database/NexusView';
+import NexusView from './NexusView';
 import DossiersView from './DossiersView';
 import ProjectsView from './ProjectsView';
-// import MatrixGlitch from './MatrixGlitch';
-// import NumbersModal from './NumbersModal';
-import { podeMostrarPista } from '../utils/argProgress';
 
 type View = 'terminal' | 'email' | 'nexus' | 'dossiers' | 'projects';
 
@@ -15,7 +12,6 @@ const Database = () => {
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<string[]>([]);
   const terminalRef = useRef<HTMLDivElement>(null);
-  // const [showNumbersModal, setShowNumbersModal] = useState(false);
 
   useEffect(() => {
     if (terminalRef.current) {
@@ -32,9 +28,7 @@ Comandos disponíveis:
 - nexus: Acessa o banco de dados Nexus
 - dossiers: Visualiza dossiês de funcionários
 - projects: Lista projetos da empresa
-- coelho branco: ???
-- white rabbit: ???
-- follow the white rabbit: ???
+- lia: Sistema de IA da EXOCORP
     `),
     clear: () => setHistory([]),
     email: () => {
@@ -53,18 +47,11 @@ Comandos disponíveis:
       addToHistory('Listando projetos...');
       setCurrentView('projects');
     },
-    'coelho branco': () => handleCoelhoComando(),
-    'white rabbit': () => handleCoelhoComando(),
-    'follow the white rabbit': () => handleCoelhoComando(),
-  };
-
-  const handleCoelhoComando = () => {
-    if (podeMostrarPista('COELHO')) {
-      addToHistory('🐰 Siga o coelho branco...');
-      addToHistory('PISTA DESBLOQUEADA: Verifique os emails corporativos.');
-    } else {
-      addToHistory('Comando não reconhecido. Digite "help" para ver os comandos disponíveis.');
-    }
+    lia: () => {
+      addToHistory('L.I.A. (Logical Intelligence Assistant) v3.2');
+      addToHistory('Status: Online');
+      addToHistory('Como posso ajudar?');
+    },
   };
 
   const addToHistory = (text: string) => {
@@ -108,12 +95,6 @@ Comandos disponíveis:
 
   return (
     <div className="min-h-screen bg-gray-900 text-green-400 p-8 font-mono">
-      {/* <MatrixGlitch /> */}
-      {/* <NumbersModal 
-        isOpen={showNumbersModal}
-        onClose={() => setShowNumbersModal(false)}
-      /> */}
-      
       <div className="max-w-4xl mx-auto">
         <div className="mb-8 flex items-center justify-between">
           <div className="flex items-center gap-3">
