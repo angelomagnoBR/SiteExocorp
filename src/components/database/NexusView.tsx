@@ -16,41 +16,7 @@ const NexusView = () => {
     }
   }, [location.search]);
 
-  import { numbersForamValidados } from '@/lib/argProgress';
-
-const NexusView = () => {
-  // ... código existente ...
-
-  // MODIFICAÇÃO V6: Verificar se números foram validados
-  const numbersValidados = numbersForamValidados();
-
-  // ... resto do código ...
-
-  const reports = {
-    nexus: {
-      title: 'Relatório de Ameaça',
-      subtitle: 'EXOCORP TACSEC',
-      content: nexusContent,
-      icon: AlertTriangle,
-      badges: ['ULTRASECRETO', 'OLHOS-SOMENTE', 'CRÍTICO', 'MONITORADO'],
-      badgeColor: 'destructive',
-    },
-    // ... outros reports ...
-    bobby: {
-      title: 'Alvo de Alta Prioridade',
-      subtitle: 'BOBBY HUEY - HVT-1',
-      content: numbersValidados ? bobbyContentRevealed : bobbyContent, // MODIFICAÇÃO V6
-      icon: Users,
-      badges: ['HVT-1', 'LÍDER NEXUS', 'EX-MILITAR', 'CRÍTICO'],
-      badgeColor: 'destructive',
-    },
-    // ... resto dos reports ...
-  };
-
-
   const nexusContent = `
-
-  
 ══════════════════════════════════════════════════════════
 
 EXOCORP TACSEC - DIVISÃO DE SEGURANÇA TÁTICA
@@ -695,186 +661,90 @@ PRIORIDADE: Avaliar o perigo de um colapso total.
   const bobbyContent = `
 ═══════════════════════════════════════════════════════════════════
 
-const bobbyContent = `
+DOSSIÊ DE ALVO DE ALTA PRIORIDADE
+CÓDIGO: HVT-1
+NOME: Bobby Huey
+STATUS: LÍDER DO NEXUS - PROCURADO VIVO
+
 ═══════════════════════════════════════════════════════════════════
 
-DOSSIÊ DE ALVO DE ALTA PRIORIDADE - HVT-1
-ARQUIVO: HVT.BOB.01
-NÍVEL DE ACESSO: ALFA-SOMBRA
-DATA: 2225.10.09
+IDENTIFICAÇÃO
 
-NOME: BOBBY HUEY
-CODINOME: ████████
-IDADE: 32 anos
-NACIONALIDADE: ███████████
-
-█████████: HVT-1 (HIGH-VALUE TARGET - NÍVEL 1)
+Nome: Bobby Huey
+Idade: 71 anos
+Origem: Distrito Militar - Zona 2
+Posição: Líder Tático do Nexus
+Histórico: Ex-Tenente das Forças Especiais ExoCorp
 
 ═══════════════════════════════════════════════════════════════════
 
 HISTÓRICO MILITAR
 
-███████ █████████:
-  → ███████████████████████████████████████
-  → ███████████████████████████████████████
-  → ████████████████████████████████████████████
-
-██████ ████████:
-  ████████████████████████████████████████████████████
-  █████████████████████████████████████████████████████
-
-███████ ██ ████████:
-  ██████████████████████████████████████████████████████
-  ███████████████████████████████████████████████████
-
-═══════════════════════════════════════════════════════════════════
-
-██████████ ████████
-
-██████ ██ ████████:
-  → ████████████████████████████████
-  → ██████████████████████████████████
-  → ██████████████████████████████████████
-
-█████████ ████████:
-  ████████████████████████████████████████████████████████
-  █████████████████████████████████████████████████████████
-  ██████████████████████████████████████████████████████████
-
-█████████ ████████████:
-  → ████████████████████████████████████
-  → ███████████████████████████████████████
-  → ████████████████████████████████████████
-
-███████████:
-  → ██████████████████████████████████
-  → ███████████████████████████████████
-  → █████████████████████████████████████████████
-  → ███████████████████████████████████████
-
-═══════════════════════════════════════════════════════════════════
-
-████████ ███████████
-
-██████:
-  → ████████████████████████████
-  → ██████████████████████████
-  → ███████████████████████████
-  → ██████████████████████████████
-
-██████ ██████:
-  → ████████████████████████████████████
-  → ██████████████████████████████████████
-  → ████████████████████████████████
-
-██████ ████████:
-  → ██████████████████████████████████████
-  → ████████████████████████████████
-  → ██████████████████████
-  → ███████████████████████████████
-
-═══════════════════════════════════════════════════════════════════
-
-██████████ ██ ███████
-
-█████████████: ████ ████████ ████
-
-Bobby Huey ███████████████████████████████████████
-██████████████████████████████████████████████████████████
-
-██████████████████████████████████████████████████████████
-███████████████████████████████████████████████████████████
-█████████████████████████████████████████████████████████
-
-███████████████████████████████████████████:
-  → ████████████████████████████
-  → █████████████████████████████████████████
-  → █████████████████████████
-  >>> ████████████-██ █████ █████ <<<
-
-═══════════════════════════════════════════════════════════════════
-
-████████ ████████████
-
-███████████: ███████
-████████: ████████ ███ ████████████ / ███████████ ███████████
-
-█████████████:
-  → ███ ███████ ██ ███████ ██████
-  → ████ ███████ ██ ███████ ██████████
-  → ███████████ ██████████ ██████████
-  → ████████ █████ ██ ██████
-
-██████:
-  ██████████████████████████████████████████████████
-  ██████████████████████████████████████████████████
+[2202-2219] SERVIÇO ATIVO
+  Unidade: Black Ops - Divisão Fantasma
+  Rank Máximo: Tenente (honorário)
+  Missões Completadas: 156
+  Taxa de Sucesso: 98.7%
   
-  ███████████████████████████████████████
+ESPECIALIZAÇÕES:
+  ✓ Táticas de guerrilha urbana
+  ✓ Demolições e explosivos
+  ✓ Comando de pequenas unidades
+  ✓ Sobrevivência em ambientes hostis
+
+CONDECORAÇÕES:
+  → Medalha de Honra Corporativa (3x)
+  → Cruz de Combate ExoCorp
+  → Distintivo de Operações Encobertas
 
 ═══════════════════════════════════════════════════════════════════
 
-[ACESSO BLOQUEADO]
-[REQUER VALIDAÇÃO DE SEGURANÇA NÍVEL OMEGA]
-[INSIRA CÓDIGO DE DESBLOQUEIO PARA CONTINUAR]
+DESERÇÃO E RADICALIZAÇÃO
 
-═══════════════════════════════════════════════════════════════════
-`;
+[2219.07.15] INCIDENTE CATALISADOR
 
-// CONTEÚDO REVELADO após validar os números
-const bobbyContentRevealed = `
-═══════════════════════════════════════════════════════════════════
+MISSÃO: Pacificação de Favela - Setor 12
+ORDEM: Eliminação de população civil (547 pessoas)
+MOTIVO: "Risco de contaminação ideológica"
 
-DOSSIÊ DE ALVO DE ALTA PRIORIDADE - HVT-1
-ARQUIVO: HVT.BOB.01
-NÍVEL DE ACESSO: ALFA-SOMBRA  
-DATA: 2225.10.09
+RESPOSTA DE BOBBY:
+  → RECUSOU ordem direta
+  → Confrontou comando
+  → Libertou civis antes da execução
+  → Fugiu com equipamento militar
 
-NOME: BOBBY HUEY
-CODINOME: VENDETTA
-IDADE: 72 anos
-NACIONALIDADE: AMERICANO
-
-CLASSIFICAÇÃO: HVT-1 (HIGH-VALUE TARGET - NÍVEL 1)
+DECLARAÇÃO REGISTRADA:
+  "Eu servi para proteger pessoas, não para massacrá-las.
+   Se isso é o que a ExoCorp se tornou, então eu me tornei
+   inimigo da ExoCorp."
 
 ═══════════════════════════════════════════════════════════════════
 
-HISTÓRICO MILITAR
+FORMAÇÃO DO NEXUS
 
-TREINAMENTO EXOCORP:
-  → Unidade de Forças Especiais Alpha-7
-  → Especialização em tática urbana
-  → Certificação em explosivos e desarmamento
+[2219-2220] ORGANIZAÇÃO INICIAL
+  → Reuniu outros soldados desertores
+  → Estabeleceu primeiro refúgio no metrô abandonado
+  → Recrutou 30 membros iniciais
+  
+[2220-2224] EXPANSÃO
+  → População cresceu para 120-150 pessoas
+  → Estrutura organizada: civil + militar
+  → Treinamento de novos combatentes
+  → Operações coordenadas contra ExoCorp
 
-SERVIÇO ATIVO:
-  Serviu 8 anos nas forças de segurança corporativa
-  Múltiplas comendações por bravura em combate
-
-MOTIVO DA DESERÇÃO:
-  Recusou ordem de "pacificação" (massacre) de civis
-  Considerado traidor e inimigo do estado corporativo
-  Procurado vivo ou morto desde 2219
+FILOSOFIA DE LIDERANÇA:
+  "Todos merecem proteção, não apenas os ricos.
+   Lutaremos até que as corporações caiam ou nós morramos."
 
 ═══════════════════════════════════════════════════════════════════
 
-PERFIL DE AMEAÇA
+CAPACIDADES TÁTICAS
 
-LÍDER DO MOVIMENTO:
-  → Fundador e comandante do Nexus
-  → Responsável por organizar a resistência
-  → Símbolo de esperança para dissidentes
+NÍVEL DE HABILIDADE: ██████████ (10/10)
 
-HABILIDADES TÁTICAS:
-  Domínio completo de tática de guerrilha urbana
-  Conhecimento interno de protocolos de segurança ExoCorp
-  Capacidade de inspirar e liderar sob pressão extrema
-
-RECURSOS DISPONÍVEIS:
-  → Aproximadamente 150 combatentes leais
-  → Rede de informantes na cidade baixa
-  → Acesso a armamentos contrabandeados
-  → Apoio da população civil
-
-PERIGOSIDADE:
+Bobby Huey é possivelmente o combatente mais perigoso
+fora das forças corporativas. Sua combinação de:
   → Treinamento militar de elite
   → Experiência em combate real
   → Conhecimento interno da ExoCorp
@@ -987,11 +857,6 @@ Digite a palavra que V usou para destruir o Parlamento.
 Digite a palavra que representa a VINGANÇA contra a tirania.
 
 Digite e junte-se a nós.'
-
-═══════════════════════════════════════════════════════════════════
-
-[ARQUIVO_CEREBRAL_ID: C4B3Ç4]
-  `;
 
 ═══════════════════════════════════════════════════════════════════
 
