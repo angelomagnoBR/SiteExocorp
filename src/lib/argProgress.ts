@@ -132,3 +132,32 @@ export const getStatusARG = (): {
     jogoDesbloqueado: progresso.jogoDesbloqueado
   };
 };
+// ============================================
+// NOVAS FUNÇÕES V6 - ADICIONAR NO FINAL
+// ============================================
+
+/**
+ * Registra que os números foram validados corretamente
+ */
+export const registrarNumbersValidados = (): void => {
+  const progress = carregarProgresso();
+  progress.numbersDigitados = true;
+  salvarProgresso(progress);
+  registrarPistaEncontrada('NUMBERS');
+};
+
+/**
+ * Verifica se os números já foram validados
+ */
+export const numbersForamValidados = (): boolean => {
+  const progress = carregarProgresso();
+  return progress.numbersDigitados === true;
+};
+
+/**
+ * Verifica se uma pista específica foi encontrada
+ */
+export const pistaFoiEncontrada = (pista: PistaID): boolean => {
+  const progress = carregarProgresso();
+  return progress.pistasEncontradas.includes(pista);
+};
