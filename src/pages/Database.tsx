@@ -25,115 +25,111 @@ const Database = () => {
   const commandQueueRef = useRef<string[]>([]);
   const navigate = useNavigate();
 
-  const handleCommand = (command: string) => {
-    const cmd = command.toLowerCase().trim();
+ const handleCommand = (command: string) => {
+  const cmd = command.toLowerCase().trim();
+  
+  // COMANDO LIA - Para o Matrix Glitch + Abre dossiê da Lia
+  if (cmd === 'lia') {
+    // Para o glitch
+    if (window.stopMatrixGlitch) {
+      window.stopMatrixGlitch();
+    }
     
-    // PISTA 2: Comando LIA - Abre dossiê da Lia E libera o coelho
-    if (cmd === 'lia') {
-      import('@/lib/argProgress').then(({ registrarPistaEncontrada }) => {
-        // Registra a pista COELHO (necessária para mostrar o rabbit na galeria)
-        registrarPistaEncontrada('COELHO');
-        // Abre o dossiê da Lia (NexusView com report=lia)
-        navigate('/database?report=lia');
-        setActiveView('nexus');
+    // Abre o dossiê da Lia no NexusView
+    navigate('/database?report=lia');
+    setActiveView('nexus');
+    setShowTerminal(false);
+    return true;
+  }
+  
+  // COMANDOS "COELHO BRANCO" - Mostra coelho na galeria
+  if (cmd === 'coelho branco' || cmd === 'white rabbit' || cmd === 'follow the white rabbit') {
+    import('@/lib/argProgress').then(({ registrarPistaEncontrada }) => {
+      // Registra a pista COELHO (faz o coelho aparecer na galeria)
+      registrarPistaEncontrada('COELHO');
+      setShowTerminal(false);
+      
+      // Opcional: Mostrar mensagem de sucesso
+      console.log('🐰 Coelho branco desbloqueado! Verifique a galeria.');
+    });
+    return true;
+  }
+  
+  // PISTA 6: Comando VENDETTA - Abre o jogo
+  if (cmd === 'vendetta' || cmd === 'remember') {
+    import('@/lib/argProgress').then(({ registrarPistaEncontrada, isJogoDesbloqueado }) => {
+      registrarPistaEncontrada('VENDETTA');
+      
+      if (isJogoDesbloqueado()) {
+        setVendettaStage('confirmed');
         setShowTerminal(false);
-      });
-      return true;
-    }
-    
-    // MODIFICAÇÃO V6: Comandos "coelho branco" (substituem "lia")
-    if (cmd === 'coelho branco' || cmd === 'white rabbit' || cmd === 'follow the white rabbit') {
-      import('@/lib/argProgress').then(({ registrarPistaEncontrada, pistaFoiEncontrada }) => {
-        registrarPistaEncontrada('COELHO');
         
-        // Se já pegou a pílula, mostra o modal dos números
-        if (pistaFoiEncontrada('PILULA')) {
-          setShowNumbersModal(true);
-          setShowTerminal(false);
-        } else {
-          // Apenas mensagem enigmática
-          console.log('🐰 Siga o coelho branco...');
-        }
-      });
-      return true;
-    }
-    
-    // PISTA 6: Comando VENDETTA - Abre o jogo
-    if (cmd === 'vendetta' || cmd === 'remember') {
-      import('@/lib/argProgress').then(({ registrarPistaEncontrada, isJogoDesbloqueado }) => {
-        registrarPistaEncontrada('VENDETTA');
-        
-        if (isJogoDesbloqueado()) {
-          setVendettaStage('confirmed');
-          setShowTerminal(false);
+        setTimeout(() => {
+          setVendettaStage('loading');
           
-          // Aguardar 1 segundo antes de mostrar o loading
           setTimeout(() => {
-            setVendettaStage('loading');
-            
-            // Aguardar 3 segundos de animação antes de navegar
-            setTimeout(() => {
-              navigate('/game');
-            }, 3000);
-          }, 1000);
-        }
-      });
-      return true;
-    }
-    
-    // Check for audit_log command
-    if (cmd === 'audit_log') {
-      setShowAuditLog(true);
-      setShowTerminal(false);
-      return true;
-    }
-    
-    // Check for Rose command
-    if (cmd === 'rose') {
-      setRoseUnlocked(true);
-      setActiveView('video');
-      setShowTerminal(false);
-      return true;
-    }
-    
-    // Map commands to their respective reports
-    const commandMap: { [key: string]: string } = {
-      'nexus': 'nexus',
-      'neia campos': 'neia campos',
-      'neia': 'neia campos',
-      'apex': 'apex',
-      'amanda backer': 'amanda backer',
-      'amaya backer': 'amanda backer',
-      'amaya': 'amanda backer',
-      'amanda': 'amanda backer',
-      'bobby': 'bobby',
-      'bobby huey': 'bobby',
-      'javier montoya': 'javier montoya',
-      'javier': 'javier montoya',
-      'el aguila': 'javier montoya',
-      'aguila': 'javier montoya',
-      'rocco': 'rocco',
-      'inferno': 'rocco',
-      'b42b424': 'b42b424',
-      '4l1550n': '4l1550n',
-      '24f43l': '24f43l',
-      '4l3x4nd23': '4l3x4nd23',
-      'v1ct02': 'v1ct02',
-      'c4b3ç4': 'c4b3ç4',
-      'c4b3ca': 'c4b3ç4',
-      'x4l3h': 'x4l3h',
-    };
-    
-    if (commandMap[cmd]) {
-      const reportName = commandMap[cmd];
-      navigate(`/database?report=${encodeURIComponent(reportName)}`);
-      setActiveView('nexus');
-      setShowTerminal(false);
-      return true;
-    }
-    
-    return false;
+            navigate('/game');
+          }, 3000);
+        }, 1000);
+      }
+    });
+    return true;
+  }
+  
+  // Check for audit_log command
+  if (cmd === 'audit_log') {
+    setShowAuditLog(true);
+    setShowTerminal(false);
+    return true;
+  }
+  
+  // Check for Rose command
+  if (cmd === 'rose') {
+    setRoseUnlocked(true);
+    setActiveView('video');
+    setShowTerminal(false);
+    return true;
+  }
+  
+  // Map commands to their respective reports
+  const commandMap: { [key: string]: string } = {
+    'nexus': 'nexus',
+    'neia campos': 'neia campos',
+    'neia': 'neia campos',
+    'apex': 'apex',
+    'amanda backer': 'amanda backer',
+    'amaya backer': 'amanda backer',
+    'amaya': 'amanda backer',
+    'amanda': 'amanda backer',
+    'bobby': 'bobby',
+    'bobby huey': 'bobby',
+    'javier montoya': 'javier montoya',
+    'javier': 'javier montoya',
+    'el aguila': 'javier montoya',
+    'aguila': 'javier montoya',
+    'rocco': 'rocco',
+    'inferno': 'rocco',
+    'b42b424': 'b42b424',
+    '4l1550n': '4l1550n',
+    '24f43l': '24f43l',
+    '4l3x4nd23': '4l3x4nd23',
+    'v1ct02': 'v1ct02',
+    'c4b3ç4': 'c4b3ç4',
+    'c4b3ca': 'c4b3ç4',
+    'x4l3h': 'x4l3h',
   };
+  
+  if (commandMap[cmd]) {
+    const reportName = commandMap[cmd];
+    navigate(`/database?report=${encodeURIComponent(reportName)}`);
+    setActiveView('nexus');
+    setShowTerminal(false);
+    return true;
+  }
+  
+  return false;
+};
+
 
   useEffect(() => {
     // Check authentication
