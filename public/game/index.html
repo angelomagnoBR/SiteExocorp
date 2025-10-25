@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecos da Humanidade - Livro-Jogo Interativo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cyan: #00ffff;
+            --magenta: #ff00ff;
+            --black: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --light-gray: #cccccc;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background: linear-gradient(135deg, var(--black) 0%, #1a0033 100%);
+            color: var(--cyan);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* TELA INICIAL */
+        #title-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0033 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .title-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4em;
+            color: var(--cyan);
+            text-shadow: 0 0 30px var(--cyan);
+            margin-bottom: 20px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px var(--cyan); }
+            to { text-shadow: 0 0 40px var(--cyan), 0 0 60px var(--magenta); }
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            color: var(--magenta);
+            margin-bottom: 10px;
+        }
+
+        .subtitle-small {
+            font-size: 1em;
+            color: var(--light-gray);
+            margin-bottom: 50px;
+        }
+
+        .menu-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .menu-btn {
+            font-family: 'Orbitron', sans-serif;
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid var(--cyan);
+            color: var(--cyan);
+            padding: 15px 60px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-btn:hover {
+            background: rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 20px var(--cyan);
+            transform: scale(1.05);
+        }
+
+        .menu-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* SELEÇÃO DE PERSONAGEM */
+        #character-select {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--black);
+            z-index: 900;
+            overflow-y: auto;
+            padding: 40px 20px;
+        }
+
+        .char-select-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5em;
+            text-align: center;
+            color: var(--magenta);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .character-card {
+            background: rgba(26, 26, 26, 0.9);
+            border: 2px solid var(--cyan);
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .character-card:hover {
+            border-color: var(--magenta);
+            box-shadow: 0 0 30px var(--magenta);
+            transform: translateY(-10px);
+        }
+
+        .char-portrait-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border: 2px solid var(--cyan);
+            margin-bottom: 15px;
+            image-rendering: pixelated;
+        }
+
+        .char-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5em;
+            color: var(--cyan);
+            margin-bottom: 10px;
+        }
+
+        .char-role {
+            color: var(--magenta);
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .char-description {
+            color: var(--light-gray);
+            font-size: 0.85em;
+            line-height: 1.6;
+        }
+
+        /* HEADER DO JOGO */
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 2px solid var(--cyan);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 20px;
+            text-shadow: 0 0 10px var(--cyan);
+        }
+
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .audio-controls button {
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid var(--cyan);
+            color: var(--cyan);
+            padding: 8px 15px;
+            cursor: pointer;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .audio-controls button:hover {
+            background: rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 10px var(--cyan);
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .volume-control input[type="range"] {
+            width: 100px;
+            accent-color: var(--cyan);
+        }
+
+        /* CONTAINER DO JOGO */
+        #game-container {
+            display: none;
+            margin-top: 80px;
+            padding: 20px;
+            min-height: calc(100vh - 80px);
+        }
+
+        #game-content {
+            display: flex;
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        #image-panel {
+            flex: 1;
+        }
+
+        #scene-image {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            border: 3px solid var(--cyan);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        #text-panel {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid var(--cyan);
+            border-radius: 10px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        #section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            color: var(--magenta);
+            text-shadow: 0 0 15px var(--magenta);
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--magenta);
+            padding-bottom: 10px;
+        }
+
+        #story-text {
+            flex: 1;
+            font-size: 16px;
+            line-height: 1.8;
+            overflow-y: auto;
+            color: var(--light-gray);
+        }
+
+        #choices {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .choice-button {
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid var(--cyan);
+            color: var(--cyan);
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 16px;
+            text-align: left;
+        }
+
+        .choice-button:hover {
+            background: rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 20px var(--cyan);
+            transform: translateX(5px);
+        }
+
+        /* TELA DE CRÉDITOS */
+        #credits-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 26, 0.95);
+            z-index: 950;
+            overflow-y: auto;
+            padding: 40px 20px;
+        }
+
+        .credits-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .credits-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3em;
+            color: var(--cyan);
+            margin-bottom: 30px;
+        }
+
+        .credits-section {
+            margin-bottom: 40px;
+            color: var(--light-gray);
+            line-height: 1.8;
+        }
+
+        .credits-section h3 {
+            color: var(--magenta);
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 1024px) {
+            #game-content { flex-direction: column; }
+            #scene-image { height: 400px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- TELA INICIAL -->
+    <div id="title-screen">
+        <h1 class="title-logo">ECOS DA HUMANIDADE</h1>
+        <div class="subtitle">Livro-Jogo Interativo</div>
+        <div class="subtitle-small">Baseado na história de RPG Ecos da Humanidade</div>
+        <div class="menu-buttons">
+            <button class="menu-btn" onclick="showCharacterSelect()">NOVO JOGO</button>
+            <button class="menu-btn" onclick="loadGame()" id="continue-btn" disabled>CONTINUAR</button>
+            <button class="menu-btn" onclick="showCredits()">CRÉDITOS</button>
+        </div>
+    </div>
+
+    <!-- SELEÇÃO DE PERSONAGEM -->
+    <div id="character-select">
+        <h2 class="char-select-title">Escolha Seu Personagem</h2>
+        <div class="character-grid">
+            <div class="character-card" onclick="selectCharacter('nilo')">
+                <img src="assets/nilo.png" class="char-portrait-img" alt="Nilo">
+                <div class="char-name">NILO</div>
+                <div class="char-role">Operador de Drones / Revolucionário</div>
+                <div class="char-description">
+                    28 anos. Entregador nato que usa drones para contrabando e revolução.
+                </div>
+            </div>
+
+            <div class="character-card" onclick="selectCharacter('zhen')">
+                <img src="assets/zhen.png" class="char-portrait-img" alt="Zhen Liu">
+                <div class="char-name">ZHEN LIU</div>
+                <div class="char-role">Cozinheiro de Rua / Guerreiro</div>
+                <div class="char-description">
+                    33 anos. Artista culinário performático da Velha China.
+                </div>
+            </div>
+
+            <div class="character-card" onclick="selectCharacter('caliope')">
+                <img src="assets/caliope.png" class="char-portrait-img" alt="Calíope">
+                <div class="char-name">CALÍOPE / ORPHEUS</div>
+                <div class="char-role">DJ Neuropisíquica / Hacker</div>
+                <div class="char-description">
+                    35 anos. Revolucionária comunista. Música manipula mentes.
+                </div>
+            </div>
+
+            <div class="character-card" onclick="selectCharacter('artz')">
+                <img src="assets/artz.png" class="char-portrait-img" alt="Artz">
+                <div class="char-name">ARTZ GEDERWÜNGEN</div>
+                <div class="char-role">Cientista / Übermensch</div>
+                <div class="char-description">
+                    80 anos (aparenta 30). Médico/biólogo alemão alcançou o Übermensch.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TELA DE CRÉDITOS -->
+    <div id="credits-screen">
+        <div class="credits-content">
+            <h1 class="credits-title">CRÉDITOS</h1>
+            
+            <div class="credits-section">
+                <h3>História Original</h3>
+                <p>Ecos da Humanidade - RPG de Mesa</p>
+            </div>
+
+            <div class="credits-section">
+                <h3>Adaptação Digital</h3>
+                <p><strong>Adaptação para digital formato livro jogo</strong></p>
+                <p><strong>Por Angelo Magno "O Narrador"</strong></p>
+            </div>
+
+            <div class="credits-section">
+                <h3>Arte Pixel</h3>
+                <p>Imagens cyberpunk criadas com IA</p>
+            </div>
+
+            <div class="credits-section">
+                <h3>Música</h3>
+                <p>Trilha atmosférica cyberpunk</p>
+            </div>
+
+            <div class="credits-section" style="margin-top: 40px; border-top: 2px solid #00ffff; padding-top: 20px;">
+                <h3>Mais Conteúdo</h3>
+                <p style="font-size: 1.1em; color: #00ffff;">Para mais aventuras acesse nosso canal no YouTube:</p>
+                <p style="font-size: 1.3em; font-weight: bold; color: #ff00ff;">@EcosdaHumanidade-RPG</p>
+            </div>
+
+            <button class="menu-btn" onclick="hideCredits()">VOLTAR</button>
+        </div>
+    </div>
+
+    <!-- HEADER DO JOGO -->
+    <header id="game-header" style="display: none;">
+        <h1>🌐 ECOS DA HUMANIDADE</h1>
+        <div class="audio-controls">
+            <button id="restart-btn" onclick="restartGame()">🔄 REINICIAR</button>
+            <button id="music-toggle">🔊 MÚSICA: ON</button>
+            <div class="volume-control">
+                <span>VOL:</span>
+                <input type="range" id="volume-slider" min="0" max="100" value="50">
+                <span id="volume-display">50%</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTAINER DO JOGO -->
+    <div id="game-container">
+        <div id="game-content">
+            <div id="image-panel">
+                <img id="scene-image" src="assets/logo.png" alt="Cena">
+            </div>
+            <div id="text-panel">
+                <h2 id="section-title">Título da Seção</h2>
+                <div id="story-text">
+                    <p>O texto da história aparecerá aqui...</p>
+                </div>
+                <div id="choices"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ÁUDIO -->
+    <audio id="bgm" loop>
+        <source src="assets/bgm_cyberpunk.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="game.js"></script>
+    <script>
+        // FUNÇÕES DO MENU
+        function showCharacterSelect() {
+            document.getElementById('title-screen').style.display = 'none';
+            document.getElementById('character-select').style.display = 'block';
+        }
+
+
+        function selectCharacter(char) {
+            document.getElementById('character-select').style.display = 'none';
+            document.getElementById('game-header').style.display = 'flex';
+            document.getElementById('game-container').style.display = 'block';
+            
+            // ✅ CORREÇÃO: Usar selectCharacter() do game.js
+            if (typeof game !== 'undefined' && game.selectCharacter) {
+                game.selectCharacter(char);
+            } else {
+                console.error('❌ Game engine não carregado! Verifique se game.js foi carregado.');
+            }
+            
+            // Iniciar música
+            startBackgroundMusic();
+        }
+
+        function showCredits() {
+            document.getElementById('credits-screen').style.display = 'block';
+        }
+
+        function hideCredits() {
+            document.getElementById('credits-screen').style.display = 'none';
+        }
+
+        function loadGame() {
+            // ✅ CORREÇÃO: Chamar método correto
+            if (typeof game !== 'undefined' && game.loadGame) {
+                game.loadGame();
+            } else {
+                alert('Sistema de Continue em desenvolvimento!');
+            }
+        }
+
+        function restartGame() {
+            if (confirm('Tem certeza que deseja reiniciar o jogo? Todo o progresso será perdido.')) {
+                if (typeof game !== 'undefined' && game.restartGame) {
+                    game.restartGame();
+                } else {
+                    location.reload();
+                }
+            }
+        }
+
+        // SISTEMA DE MÚSICA
+        const bgm = document.getElementById('bgm');
+        const musicToggle = document.getElementById('music-toggle');
+        const volumeSlider = document.getElementById('volume-slider');
+        const volumeDisplay = document.getElementById('volume-display');
+        
+        let musicEnabled = true;
+        bgm.volume = 0.5;
+
+        musicToggle.addEventListener('click', () => {
+            musicEnabled = !musicEnabled;
+            if (musicEnabled) {
+                bgm.play();
+                musicToggle.textContent = '🔊 MÚSICA: ON';
+                musicToggle.style.color = '#00ffff';
+            } else {
+                bgm.pause();
+                musicToggle.textContent = '🔇 MÚSICA: OFF';
+                musicToggle.style.color = '#ff0000';
+            }
+        });
+
+        volumeSlider.addEventListener('input', (e) => {
+            const volume = e.target.value / 100;
+            bgm.volume = volume;
+            volumeDisplay.textContent = e.target.value + '%';
+        });
+
+        function startBackgroundMusic() {
+            if (musicEnabled) {
+                bgm.play().catch(err => {
+                    console.log('Autoplay bloqueado pelo navegador. Clique em qualquer lugar para iniciar a música.');
+                });
+            }
+        }
+
+        // Verificar se há save game ao carregar
+        window.addEventListener('load', () => {
+            // Aguardar game engine carregar
+            setTimeout(() => {
+                if (typeof game !== 'undefined' && game.loadGameIfExists) {
+                    game.loadGameIfExists();
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>
