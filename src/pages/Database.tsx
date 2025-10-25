@@ -10,6 +10,8 @@ import CommandTerminal from '@/components/database/CommandTerminal';
 import SystemStatus from '@/components/database/SystemStatus';
 import SystemStatusFullView from '@/components/database/SystemStatusFullView';
 import AuditLogView from '@/components/database/AuditLogView';
+import MatrixGlitch from '@/components/MatrixGlitch';
+import NumbersModal from '@/components/NumbersModal';
 
 type ViewType = 'dossier' | 'gallery' | 'video' | 'nexus' | 'system-status' | null;
 
@@ -18,6 +20,7 @@ const Database = () => {
   const [showTerminal, setShowTerminal] = useState(false);
   const [showAuditLog, setShowAuditLog] = useState(false);
   const [roseUnlocked, setRoseUnlocked] = useState(false);
+  const [showNumbersModal, setShowNumbersModal] = useState(false);
   const [vendettaStage, setVendettaStage] = useState<'idle' | 'confirmed' | 'loading'>('idle');
   const commandQueueRef = useRef<string[]>([]);
   const navigate = useNavigate();
@@ -34,6 +37,23 @@ const Database = () => {
         navigate('/database?report=lia');
         setActiveView('nexus');
         setShowTerminal(false);
+      });
+      return true;
+    }
+    
+    // MODIFICAÇÃO V6: Comandos "coelho branco" (substituem "lia")
+    if (cmd === 'coelho branco' || cmd === 'white rabbit' || cmd === 'follow the white rabbit') {
+      import('@/lib/argProgress').then(({ registrarPistaEncontrada, pistaFoiEncontrada }) => {
+        registrarPistaEncontrada('COELHO');
+        
+        // Se já pegou a pílula, mostra o modal dos números
+        if (pistaFoiEncontrada('PILULA')) {
+          setShowNumbersModal(true);
+          setShowTerminal(false);
+        } else {
+          // Apenas mensagem enigmática
+          console.log('🐰 Siga o coelho branco...');
+        }
       });
       return true;
     }
@@ -80,34 +100,32 @@ const Database = () => {
     const commandMap: { [key: string]: string } = {
       'nexus': 'nexus',
       'neia campos': 'neia campos',
-      'neia': 'neia campos', // Alias
+      'neia': 'neia campos',
       'apex': 'apex',
       'amanda backer': 'amanda backer',
-      'amaya backer': 'amanda backer', // Alias for updated name
-      'amaya': 'amanda backer', // Short alias
-      'amanda': 'amanda backer', // Short alias
+      'amaya backer': 'amanda backer',
+      'amaya': 'amanda backer',
+      'amanda': 'amanda backer',
       'bobby': 'bobby',
-      'bobby huey': 'bobby', // Full name alias
+      'bobby huey': 'bobby',
       'javier montoya': 'javier montoya',
-      'javier': 'javier montoya', // Short alias
-      'el aguila': 'javier montoya', // Codename alias
-      'aguila': 'javier montoya', // Codename short
+      'javier': 'javier montoya',
+      'el aguila': 'javier montoya',
+      'aguila': 'javier montoya',
       'rocco': 'rocco',
-      'inferno': 'rocco', // Codename alias
-      // New secret commands
+      'inferno': 'rocco',
       'b42b424': 'b42b424',
       '4l1550n': '4l1550n',
       '24f43l': '24f43l',
       '4l3x4nd23': '4l3x4nd23',
       'v1ct02': 'v1ct02',
       'c4b3ç4': 'c4b3ç4',
-      'c4b3ca': 'c4b3ç4', // Alias without cedilla
+      'c4b3ca': 'c4b3ç4',
       'x4l3h': 'x4l3h',
     };
     
     if (commandMap[cmd]) {
       const reportName = commandMap[cmd];
-      // Navigate to the specific report
       navigate(`/database?report=${encodeURIComponent(reportName)}`);
       setActiveView('nexus');
       setShowTerminal(false);
@@ -138,6 +156,15 @@ const Database = () => {
 
   return (
     <div className="min-h-screen bg-cyber-darker relative overflow-hidden">
+      {/* MODIFICAÇÃO V6: MatrixGlitch */}
+      <MatrixGlitch />
+      
+      {/* MODIFICAÇÃO V6: NumbersModal */}
+      <NumbersModal 
+        isOpen={showNumbersModal}
+        onClose={() => setShowNumbersModal(false)}
+      />
+      
       {/* Grid background */}
       <div className="absolute inset-0 cyber-grid opacity-10" />
 
@@ -223,28 +250,28 @@ const Database = () => {
               )}
               
               {!activeView && (
-            <div className="h-full flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-6xl text-primary/20 mb-4 animate-pulse-neon">
-                  [ Ξ ]
+                <div className="h-full flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="text-6xl text-primary/20 mb-4 animate-pulse-neon">
+                      [ Ξ ]
+                    </div>
+                    <p className="text-muted-foreground terminal-text tracking-widest">
+                      SELECIONE UM DIRETÓRIO PARA ACESSAR
+                    </p>
+                    <p className="text-xs text-muted-foreground/50 terminal-text mt-4">
+                      OU USE O TERMINAL PARA COMANDOS ESPECIAIS
+                    </p>
+                  </div>
                 </div>
-                <p className="text-muted-foreground terminal-text tracking-widest">
-                  SELECIONE UM DIRETÓRIO PARA ACESSAR
-                </p>
-                <p className="text-xs text-muted-foreground/50 terminal-text mt-4">
-                  OU USE O TERMINAL PARA COMANDOS ESPECIAIS
-                </p>
-              </div>
-            </div>
-          )}
+              )}
 
-          {activeView === 'dossier' && <DossierView />}
-          {activeView === 'gallery' && <GalleryView />}
-          {activeView === 'video' && <VideoView roseUnlocked={roseUnlocked} />}
-          {activeView === 'nexus' && <NexusView />}
-          {activeView === 'system-status' && (
-            <SystemStatusFullView onClose={() => setActiveView(null)} />
-          )}
+              {activeView === 'dossier' && <DossierView />}
+              {activeView === 'gallery' && <GalleryView />}
+              {activeView === 'video' && <VideoView roseUnlocked={roseUnlocked} />}
+              {activeView === 'nexus' && <NexusView />}
+              {activeView === 'system-status' && (
+                <SystemStatusFullView onClose={() => setActiveView(null)} />
+              )}
             </>
           )}
         </main>
