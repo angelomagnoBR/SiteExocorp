@@ -3,20 +3,42 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const MatrixGlitch = () => {
   const [showGlitch, setShowGlitch] = useState(false);
+  const [glitchEnabled, setGlitchEnabled] = useState(true);
 
   useEffect(() => {
-    // Mostra o glitch a cada 20 segundos
+    // Expõe funções globais para controle via comandos
+    window.stopMatrixGlitch = () => {
+      setGlitchEnabled(false);
+      setShowGlitch(false);
+      console.log('🐰 Matrix Glitch desativado!');
+    };
+
+    window.startMatrixGlitch = () => {
+      setGlitchEnabled(true);
+      console.log('✅ Matrix Glitch reativado!');
+    };
+
+    return () => {
+      delete window.stopMatrixGlitch;
+      delete window.startMatrixGlitch;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!glitchEnabled) return; // Não executa se desabilitado
+
+    // Mostra o glitch a cada 30 segundos
     const interval = setInterval(() => {
       setShowGlitch(true);
       
-      // Esconde após 3 segundos
+      // Esconde após 6 segundos
       setTimeout(() => {
         setShowGlitch(false);
-      }, 500);
-    }, 20000);
+      }, 6000);
+    }, 30000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [glitchEnabled]);
 
   return (
     <AnimatePresence>
