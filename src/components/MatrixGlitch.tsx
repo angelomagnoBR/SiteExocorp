@@ -34,7 +34,7 @@ const MatrixGlitch = () => {
       // Esconde após 6 segundos
       setTimeout(() => {
         setShowGlitch(false);
-      }, 6000);
+      }, 500);
     }, 30000);
 
     return () => clearInterval(interval);
