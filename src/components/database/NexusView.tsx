@@ -16,7 +16,41 @@ const NexusView = () => {
     }
   }, [location.search]);
 
+  import { numbersForamValidados } from '@/lib/argProgress';
+
+const NexusView = () => {
+  // ... código existente ...
+
+  // MODIFICAÇÃO V6: Verificar se números foram validados
+  const numbersValidados = numbersForamValidados();
+
+  // ... resto do código ...
+
+  const reports = {
+    nexus: {
+      title: 'Relatório de Ameaça',
+      subtitle: 'EXOCORP TACSEC',
+      content: nexusContent,
+      icon: AlertTriangle,
+      badges: ['ULTRASECRETO', 'OLHOS-SOMENTE', 'CRÍTICO', 'MONITORADO'],
+      badgeColor: 'destructive',
+    },
+    // ... outros reports ...
+    bobby: {
+      title: 'Alvo de Alta Prioridade',
+      subtitle: 'BOBBY HUEY - HVT-1',
+      content: numbersValidados ? bobbyContentRevealed : bobbyContent, // MODIFICAÇÃO V6
+      icon: Users,
+      badges: ['HVT-1', 'LÍDER NEXUS', 'EX-MILITAR', 'CRÍTICO'],
+      badgeColor: 'destructive',
+    },
+    // ... resto dos reports ...
+  };
+
+
   const nexusContent = `
+
+  
 ══════════════════════════════════════════════════════════
 
 EXOCORP TACSEC - DIVISÃO DE SEGURANÇA TÁTICA
