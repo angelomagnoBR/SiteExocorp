@@ -191,10 +191,7 @@ const validateNumbers = () => {
        <p className="text-[8px] sm:text-[10px] text-secondary terminal-text tracking-widest">
   STATUS DO SISTEMA
 </p>
-
-            STATUS DO SISTEMA
-          </p>
-          <Button
+                   <Button
             onClick={onOpenFull}
             variant="ghost"
             size="sm"
