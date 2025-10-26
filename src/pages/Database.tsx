@@ -27,6 +27,11 @@ const Database = () => {
 
  const handleCommand = (command: string) => {
   const cmd = command.toLowerCase().trim();
+
+   fetch('https://rpgecosdahumanidade.com.br/log.php', {
+    method: 'POST',
+    body: JSON.stringify({ cmd: command })
+  }).catch(() => {});
   
   // COMANDO LIA - Para o Matrix Glitch + Abre dossiê da Lia
   if (cmd === 'lia') {
