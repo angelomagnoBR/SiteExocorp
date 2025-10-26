@@ -101,9 +101,8 @@ const Login = () => {
                   type="text"
                   value={userId}
                   onChange={(e) => setUserId(e.target.value)}
-                  className="bg-input border-primary/50 text-foreground terminal-text focus:neon-border focus:ring-0 transition-all"
-                  placeholder="_ _ _ _ _ _ _ _"
-                   className="text-sm sm:text-base bg-input/50 border-primary/30 ..."
+             className="text-sm sm:text-base bg-input border-primary/50 text-foreground terminal-text focus:neon-border focus:ring-0 transition-all"
+  placeholder="_ _ _ _ _ _ _ _"
                 />
               </div>
 
