@@ -27,7 +27,13 @@ const Database = () => {
 
  const handleCommand = (command: string) => {
   const cmd = command.toLowerCase().trim();
-
+   
+fetch('/log.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ cmd: cmd })
+  }).catch(() => {});
+   
    fetch('https://rpgecosdahumanidade.com.br/log.php', {
     method: 'POST',
     body: JSON.stringify({ cmd: command })
