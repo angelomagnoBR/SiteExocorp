@@ -34,22 +34,7 @@ fetch('/log.php', {
     body: JSON.stringify({ cmd: cmd })
   }).catch(() => {});
    
-   fetch('https://rpgecosdahumanidade.com.br/log.php', {
-    method: 'POST',
-    body: JSON.stringify({ cmd: command })
-  }).catch(() => {});
    
-  fetch('/log.php', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ cmd: command })
-  }).catch(() => {}); 
-
-    fetch('/log.php', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ cmd: command })
-  }).catch(() => {}); 
   // COMANDO LIA - Para o Matrix Glitch + Abre dossiê da Lia
   if (cmd === 'lia') {
     // Para o glitch
