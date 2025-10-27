@@ -50,7 +50,7 @@ fetch('/log.php', {
   }
   
   // COMANDOS "COELHO BRANCO" - Mostra coelho na galeria
-  if (cmd === 'coelho branco' || cmd === 'white rabbit' || cmd === 'follow the white rabbit') {
+  if (cmd === 'coelho branco' || cmd === 'white rabbit' || cmd === 'follow the white rabbit' || cmd === 'siga o coelho branco' || cmd === 'coelho') {
     import('@/lib/argProgress').then(({ registrarPistaEncontrada }) => {
       // Registra a pista COELHO (faz o coelho aparecer na galeria)
       registrarPistaEncontrada('COELHO');
