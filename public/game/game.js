@@ -1716,10 +1716,10 @@ class GameEngine {
                 ],
                 choices: [
                     {
-                        id: "final_a",
+                   id: "goto_final", // Mudei o ID para clareza
                         text: "Ver Final",
                         desc: "Seu destino se revela",
-                        nextScene: this.calculateFinalScene()
+                        nextScene: "CALCULATE_FINAL" // <-- CORREÇÃO
                     }
                 ]
             },
@@ -2172,6 +2172,7 @@ class GameEngine {
     }
     
     // FAZER ESCOLHA
+// FAZER ESCOLHA (CORRIGIDO)
     makeChoice(choiceId) {
         const scene = this.currentSceneData;
         if (!scene) return;
@@ -2220,7 +2221,21 @@ class GameEngine {
             this.executeAction(choice.action);
             return;
         }
-        
+
+        // ==========================================================
+        //         INÍCIO DA CORREÇÃO
+        // ==========================================================
+        // Verifica se é a hora de calcular o final
+        if (choice.nextScene === "CALCULATE_FINAL") {
+            // Chama a função de cálculo AGORA, quando o jogador clica
+            const finalSceneId = this.calculateFinalScene(); 
+            
+            setTimeout(() => {
+                this.loadScene(finalSceneId); // Carrega o final correto (ex: 'final_a')
+                this.updateUI();
+            }, 300);
+            return; // Impede que o código continue
+        }
         // Carregar próxima cena
         if (choice.nextScene) {
             setTimeout(() => {
