@@ -245,7 +245,7 @@ class GameEngine {
             '001': {
                 title: "Ato I: O Retorno ao Nexus",
                 location: "Nexus - Ruínas Fumegantes",
-                image: "nexus_destroyed",
+                image: "logo",
                 content: [
                     {
                         type: "system",
