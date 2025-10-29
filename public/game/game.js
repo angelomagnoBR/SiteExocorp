@@ -298,7 +298,7 @@ class GameEngine {
             '002': {
                 title: "A Matriarca e o Segredo",
                 location: "Nexus - Subsolo Colapsado",
-                image: "assets/bg_hospital.png",
+                image: "assets/matriarca.png",
                 content: [
                     {
                         type: "narrative",
