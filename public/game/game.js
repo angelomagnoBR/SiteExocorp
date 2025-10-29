@@ -543,7 +543,7 @@ class GameEngine {
             '010': {
                 title: "Ato II: A Grande Exposição",
                 location: "Torre de Transmissão - Blitz News",
-                image: "assets/bg_tower_exec.jpg",
+                image: "assets/blitz.png",
                 content: [
                     {
                         type: "system",
