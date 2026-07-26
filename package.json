@@ -10,7 +10,11 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+
   "dependencies": {
+    "framer-motion": "^11.3.0",
+    "@fontsource/orbitron": "^5.2.8",
+
     "@fontsource/orbitron": "^5.2.8",
     "@fontsource/share-tech-mono": "^5.2.7",
     "@hookform/resolvers": "^3.10.0",
